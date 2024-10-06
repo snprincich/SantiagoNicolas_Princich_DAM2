@@ -11,7 +11,7 @@ namespace Tema_2
         public static void Main()
         {
             IEjecutarEjercicio ejercicio;
-            ejercicio = new Ej4();
+            ejercicio = new Ej3();
             ejercicio.Ejecutar();
         }
     }
