@@ -5,7 +5,7 @@
         public static void Main()
         {
             IEjecutarEjercicio ejercicio;
-            ejercicio = new Ej4();
+            ejercicio = new Ej5();
             ejercicio.Ejecutar();
         }
     }
