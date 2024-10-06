@@ -1,14 +1,9 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;*/
-
-
-/*
+﻿/*
  Dada un array de enteros, encuentra todo los números que aparecen
 un número impar de veces.
  */
+
+using System.Numerics;
 
 namespace Tema_2
 {
@@ -16,20 +11,61 @@ namespace Tema_2
     {
         public void Ejecutar()
         {
-            string texto = "HOLA K ASE";
-            List<string> axdd = new List<string>();
+            Console.WriteLine("Introduzca numeros separados por una coma");
+            String[] entrada = Console.ReadLine().Split(',');
 
-            texto.ToList().ForEach(x => axdd.Add(x.ToString()));
-         
+            int[] numero = new int[entrada.Length];
 
-            Console.WriteLine(string.Join("",axdd));
-            
+            for (int i = 0; i < entrada.Length; i++)
+            {
+                numero[i] = int.Parse(entrada[i]);
+            }
+
+            MostrarImpares(GetImpares(CargarDictionary(numero)));
         }
 
-        private Boolean esImpar(int i)
+
+        private Dictionary<int, int> CargarDictionary(int[] numero)
+        {
+            Dictionary<int, int> mapa = new Dictionary<int, int>();
+            foreach (int i in numero)
+            {
+                if (!mapa.ContainsKey(i)) mapa.Add(i, 1);
+                else mapa[i]++;
+            }
+            return mapa;
+        }
+
+        private HashSet<KeyValuePair<int, int>> GetImpares(Dictionary<int, int> mapa)
+        {
+            HashSet<KeyValuePair<int, int>> impares = new HashSet<KeyValuePair<int, int>>();
+
+            foreach (KeyValuePair<int, int> ver in mapa)
+            {
+                if (EsImpar(ver.Value)) impares.Add(ver);
+            }
+
+            return impares;
+        }
+
+        private Boolean EsImpar(int i)
         {
             if (i % 2 == 0) return false;
             return true;
         }
+
+        private void MostrarImpares(HashSet<KeyValuePair<int, int>> impares)
+        {
+            if (impares.Count == 0) Console.WriteLine("Ningun numero se repite un numero impar de veces");
+            else
+            {
+                Console.WriteLine("Los numeros que se repiten un numero de veces impares son: ");
+                foreach (var ver in impares)
+                {
+                    Console.WriteLine($"El numero {ver.Key} aparece {ver.Value} veces.");
+                }
+            }
+        }
+
     }
 }

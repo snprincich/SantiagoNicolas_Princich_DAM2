@@ -21,10 +21,10 @@ namespace Tema_2
                 Int32.TryParse(entrada[i], out numero[i]);
             }
 
-            KeyValuePair<int, int>  solucion = calcRepes(cargarDictionary(numero));
-            Console.WriteLine($"El numero que menos se repite es {solucion.Key} con {solucion.Value} repeticiones.");
+            KeyValuePair<int, int>  solucion = CalcRepes(CargarDictionary(numero));
+            Console.WriteLine($"El numero que menos se repite es {solucion.Key} con {solucion.Value} apariciones.");
         }
-        private Dictionary<int,int> cargarDictionary(int[] numero)
+        private Dictionary<int,int> CargarDictionary(int[] numero)
         {
             Dictionary<int,int> mapa = new Dictionary<int,int>();
             foreach (int i in numero)
@@ -34,7 +34,7 @@ namespace Tema_2
             }
             return mapa;
         }
-        private KeyValuePair<int, int> calcRepes(Dictionary<int,int> mapa)
+        private KeyValuePair<int, int> CalcRepes(Dictionary<int,int> mapa)
         {
             KeyValuePair<int, int> solucion;
             HashSet<KeyValuePair<int,int>> prueba;

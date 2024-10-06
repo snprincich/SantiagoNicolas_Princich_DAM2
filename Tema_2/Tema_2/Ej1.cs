@@ -12,13 +12,19 @@ namespace Tema_2
         {
             Console.WriteLine("Dame una frase");
             string texto = Console.ReadLine();
-            string[] vocales = { "a", "e", "i", "o", "u" };
             texto=texto.ToLower();
 
+            
+            Console.WriteLine($"El texto tiene {ContarVocales(texto)} vocales");
+        }
+        private int ContarVocales(string texto)
+        {
+            string[] vocales = { "a", "e", "i", "o", "u" };
+
             int contVocales = 0;
-            for (int i = 0; i<texto.Length;i++)
+            for (int i = 0; i < texto.Length; i++)
             {
-                for (int b = 0;b<vocales.Length;b++)
+                for (int b = 0; b < vocales.Length; b++)
                 {
 
 
@@ -28,7 +34,7 @@ namespace Tema_2
                     }
                 }
             }
-            Console.WriteLine($"El texto tiene {contVocales} vocales");
+            return contVocales;
         }
     }
 }

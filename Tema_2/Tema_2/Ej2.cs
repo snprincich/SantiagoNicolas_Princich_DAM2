@@ -12,10 +12,10 @@ namespace Tema_2
         {
             Console.WriteLine("Escribe un numero PIN de 4 o 6 digitos");
             string pin = Console.ReadLine();
-            if (checkPin(pin)) Console.WriteLine("PIN Valido");
+            if (CheckPin(pin)) Console.WriteLine("PIN Valido");
             else Console.WriteLine("Pin no Valido");
         }
-        private Boolean checkPin(string pin)
+        private Boolean CheckPin(string pin)
         {
             if (pin.Length == 4 || pin.Length == 6) return true;
             return false;
