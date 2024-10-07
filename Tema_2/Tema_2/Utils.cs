@@ -9,7 +9,7 @@ namespace Tema_2
     internal class Utils
     {
         
-        public int EntradaNumero()
+        public static int EntradaNumero()
         {
             int i;
             string entrada;
@@ -31,7 +31,7 @@ namespace Tema_2
         }
 
 
-        public string[] EntradaSplitString()
+        public static string[] EntradaSplitString()
         {
             string[] spliteado;
             string entrada;
@@ -54,7 +54,7 @@ namespace Tema_2
         }
 
         //MIERDA DE METODO
-        public int[] EntradaSplitNumero()
+        public static int[] EntradaSplitNumero()
         {
             string[] spliteado;
             string entrada;
@@ -81,7 +81,7 @@ namespace Tema_2
         }
 
         //Comprueba que todos los elementos del array son numeros enteros
-        public Boolean ComprobarNumeroArray(string[] entrada)
+        public static Boolean ComprobarNumeroArray(string[] entrada)
         {
             Boolean b = true;
             foreach (string ver in entrada)
@@ -92,7 +92,7 @@ namespace Tema_2
         }
 
         //Parsea un array
-        public int[] ParseArray(string[] entrada)
+        public static int[] ParseArray(string[] entrada)
         {
             int[] numero = new int [entrada.Length];
             for (int i = 0; i<entrada.Length;i++) 
