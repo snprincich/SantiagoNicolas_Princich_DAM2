@@ -28,7 +28,7 @@ namespace Tema_2
             Console.WriteLine($"{encontrarIndice(numero3)}\n");
 
             // EN TEORIA DEBERIA FUNCIONAR, PERO EN 4 MINUTOS DE BUCLE NO HA SALIDO
-            // HAY QUE CAMBIAR LAS VARIABLES 'LEFT','RIGHT' Y LA ENTRADA DEL METODO A ARRAY DE LONGS 
+            // HAY QUE CAMBIAR LAS VARIABLES 'LEFT','RIGHT' A LONG Y LA ENTRADA DEL METODO A ARRAY DE LONGS 
             /*            
             long[] numero4 = new long [1000];
             
