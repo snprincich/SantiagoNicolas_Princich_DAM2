@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace Tema_2
 {
     internal class Utils
     {
-        
-        public static int EntradaNumero()
+        //Pide numero por consola y lo devuelve parseado, si no lo consigue parsear sigue pidiendo 
+        private int EntradaNumero()
         {
             int i;
             string entrada;
@@ -19,21 +20,16 @@ namespace Tema_2
                 Console.WriteLine("Introduzca un numero");
                 entrada = Console.ReadLine();
 
-                if (int.TryParse(entrada, out i))
-                {
-                    bucle = true;
-                }
-                else Console.WriteLine("No se ha introducido un numero correcto.");
+                if (EsNumero(entrada)) bucle = true;
+           
+            } while (!bucle);
 
-            } while (bucle == false);
-
-            return i;
+            return int.Parse(entrada);
         }
 
 
-        public static string[] EntradaSplitString()
+        private string[] EntradaSplitString()
         {
-            string[] spliteado;
             string entrada;
 
             Boolean bucle = false;
@@ -42,19 +38,15 @@ namespace Tema_2
                 Console.WriteLine("Introduzca un texto separado por comas");
                 entrada = Console.ReadLine();
 
-                if (!entrada.Contains(','))
-                {
-                    Console.WriteLine("El texto no contiene comas");
-                }
+                if (TieneComa(entrada)) bucle = true;
 
-            } while (bucle == false);
+            } while (!bucle);
 
-            spliteado = entrada.Split(",");
-            return spliteado;
+            return entrada.Split(",");
         }
 
-        //MIERDA DE METODO
-        public static int[] EntradaSplitNumero()
+        //Pide datos por consola hasta que se introduzca un texto con al menos una coma y numeros. Devuelve un array de enteros.
+        private int[] EntradaSplitNumero()
         {
             string[] spliteado;
             string entrada;
@@ -65,37 +57,54 @@ namespace Tema_2
                 Console.WriteLine("Introduzca numeros separado por comas");
                 entrada = Console.ReadLine();
 
-                if (entrada.Contains(','))
-                {
-                    if (ComprobarNumeroArray(entrada.Split(',')))
-                    {
-                        bucle=true;
-                    }
-                    else Console.WriteLine("No todos los elementos son numeros");
-                }
-                else Console.WriteLine("El texto no contiene comas");
+                if (TieneComa(entrada) && ComprobarNumeroArray(entrada.Split(','))) bucle = true;
 
-            } while (bucle == false);
+            } while (!bucle);
+
             spliteado = entrada.Split(",");
             return ParseArray(spliteado);
         }
 
-        //Comprueba que todos los elementos del array son numeros enteros
-        public static Boolean ComprobarNumeroArray(string[] entrada)
+        //Comprueba que un texto tiene coma
+        private Boolean TieneComa(String texto)
         {
-            Boolean b = true;
-            foreach (string ver in entrada)
+            if (!texto.Contains(','))
             {
-                if (!int.TryParse(ver, out _)) return false;
+                Console.WriteLine("El texto no contiene comas");
+                return false;
             }
-            return b;
+            return true;
         }
 
-        //Parsea un array
-        public static int[] ParseArray(string[] entrada)
+        //Recive String devuelve true:es numero / false: no es numero
+        private Boolean EsNumero(string numero)
         {
-            int[] numero = new int [entrada.Length];
-            for (int i = 0; i<entrada.Length;i++) 
+            if (!int.TryParse(numero, out _))
+            {
+                Console.WriteLine($"'{numero}' no es un numero");
+                return false;
+            }
+
+            return true;
+        }
+
+        //Comprueba que todos los elementos del array son numeros enteros
+        private Boolean ComprobarNumeroArray(string[] entrada)
+        {
+            foreach (string ver in entrada)
+            {
+                if (!EsNumero(ver)) return false;
+            }
+            return true;
+        }
+
+
+
+        //Parsea un array de string a entero
+        private int[] ParseArray(string[] entrada)
+        {
+            int[] numero = new int[entrada.Length];
+            for (int i = 0; i < entrada.Length; i++)
             {
                 int.TryParse(entrada[i], out numero[i]);
             }
