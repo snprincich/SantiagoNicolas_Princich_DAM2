@@ -21,7 +21,8 @@ namespace Tema_2
     {
         public void Ejecutar()
         {
-            int numero = Utils.EntradaNumero();
+            Utils utils = Utils.GetInstance();
+            int numero = utils.EntradaNumero();
             Console.WriteLine(PersistenciaMultiplicativa(numero));
         }
 

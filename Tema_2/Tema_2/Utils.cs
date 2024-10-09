@@ -9,8 +9,17 @@ namespace Tema_2
 {
     internal class Utils
     {
+        private static Utils instance;
+        public static Utils GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Utils();
+            }
+            return instance;
+        }
         //Pide numero por consola y lo devuelve parseado, si no lo consigue parsear sigue pidiendo 
-        private int EntradaNumero()
+        public int EntradaNumero()
         {
             int i;
             string entrada;
@@ -27,8 +36,9 @@ namespace Tema_2
             return int.Parse(entrada);
         }
 
-
-        private string[] EntradaSplitString()
+        // Pide un texto por consola y lo devuelve spliteado por comas
+        // Pide un texto hasta que encuentre una coma
+        public string[] EntradaSplitString()
         {
             string entrada;
 
@@ -45,8 +55,9 @@ namespace Tema_2
             return entrada.Split(",");
         }
 
-        //Pide datos por consola hasta que se introduzca un texto con al menos una coma y numeros. Devuelve un array de enteros.
-        private int[] EntradaSplitNumero()
+        // Pide datos por consola hasta que se introduzca un texto con al menos una coma y numeros.
+        // Devuelve un array de enteros.
+        public int[] EntradaSplitNumero()
         {
             string[] spliteado;
             string entrada;
@@ -66,7 +77,7 @@ namespace Tema_2
         }
 
         //Comprueba que un texto tiene coma
-        private Boolean TieneComa(String texto)
+        public Boolean TieneComa(String texto)
         {
             if (!texto.Contains(','))
             {
@@ -77,7 +88,7 @@ namespace Tema_2
         }
 
         //Recive String devuelve true:es numero / false: no es numero
-        private Boolean EsNumero(string numero)
+        public Boolean EsNumero(string numero)
         {
             if (!int.TryParse(numero, out _))
             {
@@ -89,7 +100,7 @@ namespace Tema_2
         }
 
         //Comprueba que todos los elementos del array son numeros enteros
-        private Boolean ComprobarNumeroArray(string[] entrada)
+        public Boolean ComprobarNumeroArray(string[] entrada)
         {
             foreach (string ver in entrada)
             {
@@ -101,7 +112,7 @@ namespace Tema_2
 
 
         //Parsea un array de string a entero
-        private int[] ParseArray(string[] entrada)
+        public int[] ParseArray(string[] entrada)
         {
             int[] numero = new int[entrada.Length];
             for (int i = 0; i < entrada.Length; i++)
