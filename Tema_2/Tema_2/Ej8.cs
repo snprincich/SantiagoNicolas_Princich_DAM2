@@ -16,6 +16,7 @@ arrayDiff([1, 2, 2, 2, 3], [2]) == [1, 3]
 
 */
 
+// NO FUNCIONA
 namespace Tema_2
 {
     internal class Ej8 : IEjecutarEjercicio
@@ -34,7 +35,9 @@ namespace Tema_2
         private int[] arrayDiff(List<int> a, List<int> b)
         {
             //EXCEPT TAMBIEN FUNCIONA CON ARRAYS, NO SOLO CON LISTAS
+            //EXCEPT NO DEVUELVE DUPLICADOS
             return a.Except(b).ToArray();
+            a.Excep
         }
 
     }
