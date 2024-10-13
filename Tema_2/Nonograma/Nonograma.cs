@@ -27,6 +27,7 @@ namespace Nonograma
             if (nonograma == null) nonograma =  new Nonograma();
             return nonograma;
         }
+
         public void Mostrar()
         {
             
@@ -38,23 +39,28 @@ namespace Nonograma
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         //Console.ForegroundColor = ConsoleColor.White;
-                        //Console.Write(Solucion[i, j]+" ");
-                        Console.Write(Solucion[i, j]);
+                        //Console.Write(Solucion[i, j]);
+                        Console.Write("  ");
+
                         Console.ResetColor();
+                        
                     }
-                    else if (Solucion[i, j] == -1)
+                    else if (Solucion[i, j] == 2)
                     {
                         Console.BackgroundColor = ConsoleColor.DarkRed;
                         //Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write(Solucion[i, j]);
+                        //Console.Write(Solucion[i, j]);
+                        Console.Write("  ");
                         Console.ResetColor();
+                        
                     }
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
                         //Console.ForegroundColor = ConsoleColor.Black;
-                        Console.Write(Solucion[i, j]);
+                        Console.Write("  ");
                         Console.ResetColor();
+                        
                     }
                     
                 }

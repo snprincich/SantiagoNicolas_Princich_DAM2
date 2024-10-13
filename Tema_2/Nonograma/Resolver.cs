@@ -125,11 +125,26 @@ namespace Nonograma
 
         public void ComprobarTerminadas()
         {
-            for (int i =0;i<nonograma.Columna.Length;i++)
+            //COMPRUEBA SI LA COLUMNA ESTA TERMINADA Y PINTA LOS RESTANTES COMO 2 (IMPOSIBLE)
+            for (int i = 0; i < nonograma.Columna.Length; i++)
             {
                 if (EstaCompletadoColumna(nonograma.Columna[i], i))
                 {
+                    for (int b = 0; b < nonograma.Fila.Length; b++)
+                    {
+                        if (nonograma.Solucion[b, i] == 0) nonograma.Solucion[b, i] = 2;
+                    }
+                }
+            }
 
+            for (int i = 0; i < nonograma.Fila.Length; i++)
+            {
+                if (EstaCompletadoFila(nonograma.Fila[i], i))
+                {
+                    for (int b = 0; b < nonograma.Columna.Length; b++)
+                    {
+                        if (nonograma.Solucion[i, b] == 0) nonograma.Solucion[i, b] = 2;
+                    }
                 }
             }
         }
@@ -139,6 +154,7 @@ namespace Nonograma
         {
             PrimeraPasada();
 
+            ComprobarTerminadas();
             /*while (true)
             {
 
