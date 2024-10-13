@@ -5,10 +5,9 @@
         public static void Main()
         {
             IEjecutarEjercicio ejercicio;
-            /*Utils prueba = new Utils();
-            Console.WriteLine(prueba.EntradaSplitNumero());*/
 
-           ejercicio = new Ej11();
+
+           ejercicio = new Ej12();
             ejercicio.Ejecutar();
         }
     }
