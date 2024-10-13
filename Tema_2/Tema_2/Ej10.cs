@@ -21,7 +21,9 @@ namespace Tema_2
         public void Ejecutar()
         {
             int entrada = 1234;
-            Console.WriteLine($"El numero {entrada} en binario tiene {CantidadBitsUno(entrada)} unos");
+            if (entrada < 0) Console.WriteLine("No se aceptan entradas negativas");
+            else Console.WriteLine($"El numero {entrada} en binario tiene {CantidadBitsUno(entrada)} unos");
+
         }
 
         private int CantidadBitsUno(int numero)
