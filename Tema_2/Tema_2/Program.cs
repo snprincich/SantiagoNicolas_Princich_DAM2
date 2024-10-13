@@ -8,7 +8,7 @@
             /*Utils prueba = new Utils();
             Console.WriteLine(prueba.EntradaSplitNumero());*/
 
-           ejercicio = new Ej9();
+           ejercicio = new Ej10();
             ejercicio.Ejecutar();
         }
     }
