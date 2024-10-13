@@ -27,13 +27,14 @@
             fila[3] = [1,2];
             fila[4] = [4,0];
 
-            Nonograma consola = new Nonograma(columna,fila);
+            Nonograma consola = new Nonograma(fila, columna);
             consola.Mostrar();
             Resolver resolver = new Resolver();
 
-            Console.WriteLine(resolver.EstaCompletadoFila(fila[4], 4) ? "SI" : "NO");
-            //resolver.EstaCompletadoColumna(columna[1],1);
 
+            resolver.Ejecutar();
+            Console.WriteLine();
+            consola.Mostrar();
            
         }
     }

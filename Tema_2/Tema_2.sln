@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tema_2", "Tema_2\Tema_2.csproj", "{A39D1290-BF41-456C-8221-8A0C074DC3BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonograma", "Nanograma\Nonograma.csproj", "{07E13944-F6DE-4CB5-AC8E-AD716A00F2EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonograma", "Nonograma\Nonograma.csproj", "{07E13944-F6DE-4CB5-AC8E-AD716A00F2EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

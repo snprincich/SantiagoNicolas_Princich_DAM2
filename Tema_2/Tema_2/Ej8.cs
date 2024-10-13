@@ -37,7 +37,7 @@ namespace Tema_2
             //EXCEPT TAMBIEN FUNCIONA CON ARRAYS, NO SOLO CON LISTAS
             //EXCEPT NO DEVUELVE DUPLICADOS
             return a.Except(b).ToArray();
-            a.Excep
+            
         }
 
     }

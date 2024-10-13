@@ -20,11 +20,6 @@ namespace Nonograma
             this.Columna = columna;
             this.Fila = fila;
             Solucion = new int[columna.Length, fila.Length];
-
-            Solucion[4, 0] = 1;
-            Solucion[4, 1] = 1;
-            Solucion[4, 2] = 1;
-            Solucion[4, 3] = 1;
         }
 
         public static Nonograma ConsolaSingleInstance()
@@ -39,7 +34,29 @@ namespace Nonograma
             {
                 for (int j = 0; j < Solucion.GetLength(1); j++)
                 {
-                    Console.Write(Solucion[i,j]+" ");
+                    if (Solucion[i,j]== 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        //Console.ForegroundColor = ConsoleColor.White;
+                        //Console.Write(Solucion[i, j]+" ");
+                        Console.Write(Solucion[i, j]);
+                        Console.ResetColor();
+                    }
+                    else if (Solucion[i, j] == -1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        //Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write(Solucion[i, j]);
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        //Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write(Solucion[i, j]);
+                        Console.ResetColor();
+                    }
+                    
                 }
                 Console.WriteLine();
             }
