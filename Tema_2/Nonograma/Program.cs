@@ -35,6 +35,7 @@
             resolver.Ejecutar();
             Console.WriteLine();
             consola.Mostrar();
+            
            
         }
     }

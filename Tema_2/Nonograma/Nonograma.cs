@@ -10,15 +10,22 @@ namespace Nonograma
     {
         static Nonograma nonograma;
         public  int[][] Columna { get; }
+        public bool[][] ColumnaCompletados { get; set; }
         public  int[][] Fila { get; }
+        public bool[][] FilaCompletados { get; set; }
         public  int[,] Solucion { get; set; }
+
+
 
         public Nonograma() { }
         public Nonograma(int[][] fila, int[][] columna)
         {
             nonograma = this;
+
             this.Columna = columna;
             this.Fila = fila;
+            CargarArraysCompletados();
+
             Solucion = new int[columna.Length, fila.Length];
         }
 
@@ -26,6 +33,26 @@ namespace Nonograma
         {
             if (nonograma == null) nonograma =  new Nonograma();
             return nonograma;
+        }
+
+
+        public void CargarArraysCompletados()
+        {
+            ColumnaCompletados = new bool[Columna.Length][];
+            for (int i = 0; i < Columna.Length; i++)
+            {
+                for (int j = 0; j < Columna[i].Length; j++)
+                {
+                    ColumnaCompletados[i] = new bool[Columna[0].Length];
+                }
+                
+            }
+
+            FilaCompletados = new bool[Fila.Length][];
+            for (int i = 0; i < Fila.Length; i++)
+            {
+                FilaCompletados[i] = new bool[Fila[0].Length];
+            }
         }
 
         public void Mostrar()

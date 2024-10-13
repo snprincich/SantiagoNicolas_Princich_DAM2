@@ -35,7 +35,14 @@ namespace Nonograma
             {
                 if (nonograma.Solucion[i, posicion] == 1) cont++;
             }
-            if (cont == numero) return true;
+            if (cont == numero)
+            {
+                for (int i = 0; i < nonograma.ColumnaCompletados[posicion].Length; i++)
+                {
+                    nonograma.ColumnaCompletados[posicion][i] = true;
+                }
+                return true;
+            }
             return false;
         }
         public Boolean EstaCompletadoFila(int[] array, int posicion)
@@ -48,7 +55,14 @@ namespace Nonograma
             {
                 if (nonograma.Solucion[posicion, i] == 1) cont++;
             }
-            if (cont == numero) return true;
+            if (cont == numero)
+            {
+                for (int i = 0; i < nonograma.FilaCompletados[posicion].Length; i++)
+                {
+                    nonograma.FilaCompletados[posicion][i] = true;
+                }
+                return true;
+            }
             return false;
         }
 
@@ -67,15 +81,15 @@ namespace Nonograma
         public void PrimeraPasada()
         {
             //COLUMNAS
-            for (int i = 0; i < nonograma.Columna.Length;i++)
+            for (int i = 0; i < nonograma.Columna.Length; i++)
             {
-                for(int b = 0; b < nonograma.Columna[i].Length; b++)
+                for (int b = 0; b < nonograma.Columna[i].Length; b++)
                 {
                     int borrar = nonograma.Fila.Length - Ocupa(nonograma.Columna[i]);
 
                     if (borrar < nonograma.Columna[i][b])
                     {
-                    int empieza = EmpiezaEn(nonograma.Columna[i],b);
+                        int empieza = EmpiezaEn(nonograma.Columna[i], b);
                         empieza += borrar;
 
                         int pintar = nonograma.Columna[i][b] - borrar;
@@ -83,11 +97,11 @@ namespace Nonograma
                         for (int j = 0; j < pintar; j++)
                         {
                             //AHORA SE PINTA COLUMNA[I][B] - BORRAR POSICIONES
-                            nonograma.Solucion[empieza+j, i] = 1;
-                            
-                            Console.WriteLine($"En la columna {i} pista {nonograma.Columna[i][b]} se pinta {empieza+j}-{i}");
+                            nonograma.Solucion[empieza + j, i] = 1;
+
+                            Console.WriteLine($"En la columna {i} pista {nonograma.Columna[i][b]} se pinta {empieza + j}-{i}");
                         }
-                        
+
                     }
 
                 }
@@ -109,7 +123,7 @@ namespace Nonograma
                         for (int j = 0; j < pintar; j++)
                         {
                             //AHORA SE PINTA FILA[I][B] - BORRAR POSICIONES
-                            nonograma.Solucion[i,empieza + j] = 1;
+                            nonograma.Solucion[i, empieza + j] = 1;
 
                             Console.WriteLine($"En la Fila {i} pista {nonograma.Fila[i][b]} se pinta {i}-{empieza + j}");
                         }
@@ -147,14 +161,68 @@ namespace Nonograma
                     }
                 }
             }
+
+
+
+
         }
 
+
+        //COMPRUEBA SI UNA PISTA ESTA TERMINADA
+        public void ComprobarTerminadaIndividual()
+        {
+
+        }
+
+        //SIN TERMINAR
+        public void SegundaPasada()
+        {
+            
+
+            for (int i = 0; i < nonograma.Fila.Length; i++)
+            {
+                List<int> imposibles = VerImposibles(i);
+
+                
+                for (int j = 1; j < imposibles.Count; j++)
+                {
+                    //LA DIFERENCIA ENTRE DOS NUMEROS ES LA RESTA DE AMBOS PASADA A VALOR ABSOLUTO
+                    int hueco = Math.Abs((imposibles[j]-1) - imposibles [j]);
+                    
+                    for (int k = 1; k < nonograma.Fila.Length; k++)
+                    {
+                        if (hueco >= nonograma.Fila[i][k])
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        //DEVUELVE LAS POSICIONES DE LAS CASILLAS IMPOSIBLES
+        public List<int> VerImposibles(int fila)
+        {
+            List<int> posiciones = new List<int>();
+            posiciones.Add(-1);
+
+            
+            for (int i = 0; i < nonograma.Fila.Length; i++)
+            {
+
+                if (nonograma.Solucion[fila, i] == 2) posiciones.Add(i);
+            }
+            posiciones.Add(nonograma.Fila.Length);
+
+            return posiciones;
+        }
 
         public void Ejecutar()
         {
             PrimeraPasada();
-
             ComprobarTerminadas();
+
+            
             /*while (true)
             {
 
