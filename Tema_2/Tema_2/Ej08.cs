@@ -13,13 +13,12 @@ de la otra:
 
 arrayDiff([1, 2], [1]) == [2]
 arrayDiff([1, 2, 2, 2, 3], [2]) == [1, 3]
-
 */
 
-// NO FUNCIONA
+
 namespace Tema_2
 {
-    internal class Ej8 : IEjecutarEjercicio
+    internal class Ej08 : IEjecutarEjercicio
     {
         public void Ejecutar()
         {
@@ -27,17 +26,27 @@ namespace Tema_2
             int[] a = utils.EntradaSplitNumero();
             int[] b = utils.EntradaSplitNumero();
 
-            //FORMA DE PRINTEAR ARRAYS
-            Console.WriteLine(String.Join(", ", arrayDiff(a.ToList(), b.ToList())));
+            
+            int[] resultado = arrayDiff(a.ToList(), b.ToList());
+            Console.WriteLine(resultado.Length==0?"Esta vacio": String.Join(", ", resultado));
         }
 
         //PIDE POR PARAMETRO LISTAS Y DEVUELVE UN ARRAY. LO DEJO ASI PORQUE LO PONE EN EL ENUNCIADO
         private int[] arrayDiff(List<int> a, List<int> b)
         {
             //EXCEPT TAMBIEN FUNCIONA CON ARRAYS, NO SOLO CON LISTAS
-            //EXCEPT NO DEVUELVE DUPLICADOS
-            return a.Except(b).ToArray();
-            
+            //SI LA LISTA a TIENE DUPLICADOS SOLO DEVUELVE 1
+            //return a.Except(b).ToArray();
+
+            List<int> nuevoArray = new List<int>();
+
+            for (int i = 0; i < a.Count; i++)
+            {
+                if (!b.Contains(a[i])) nuevoArray.Add(a[i]);
+            }
+
+
+            return nuevoArray.ToArray(); 
         }
 
     }

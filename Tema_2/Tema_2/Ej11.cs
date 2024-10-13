@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 //El teorema de los cuatro cuadrados de Lagrange, también conocido
 //como conjetura de Bachet, afirma que todo número natural puede
@@ -19,15 +20,14 @@ namespace Tema_2
 
         public void Ejecutar()
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Console.WriteLine(i);
-                Mostrar(CalcLagrange(i));
-            }
+
+            Utils utils = Utils.GetInstance();
+            Mostrar(CalcLagrange(utils.EntradaNumero()));
+            
             
         }
 
-        static int[] CalcLagrange(int numero)
+        private int[] CalcLagrange(int numero)
         {
             
             for (int i = 0; i * i <= numero; i++)
@@ -60,7 +60,7 @@ namespace Tema_2
         {
            
 
-                Console.Write(string.Join("^2 + ", array ));
+            Console.Write(string.Join("^2 + ", array ));
             Console.Write("^2");
             Console.WriteLine();
         }

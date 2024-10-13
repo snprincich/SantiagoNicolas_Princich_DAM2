@@ -20,10 +20,19 @@ namespace Tema_2
 
         public void Ejecutar()
         {
-            int entrada = 1234;
-            if (entrada < 0) Console.WriteLine("No se aceptan entradas negativas");
-            else Console.WriteLine($"El numero {entrada} en binario tiene {CantidadBitsUno(entrada)} unos");
+            //EJEMPLO EJERCICIO
+            Console.WriteLine("Ejemplos del ejercicio");
+            int entradaUno = 1234;
+            Console.WriteLine($"El numero {entradaUno} en binario tiene {CantidadBitsUno(entradaUno)} unos\n");
 
+            Utils utils = Utils.GetInstance();
+            int numero = utils.EntradaNumero();
+            while (numero < 0)
+            {
+                Console.WriteLine("No se aceptan numeros negativos");
+                numero = utils.EntradaNumero();
+            }
+            Console.WriteLine($"El numero {numero} en binario tiene {CantidadBitsUno(numero)} unos");
         }
 
         private int CantidadBitsUno(int numero)

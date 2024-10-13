@@ -15,17 +15,25 @@ respuestas, devuelve el menor índice correcto.
  */
 namespace Tema_2
 {
-    internal class Ej7 : IEjecutarEjercicio
+    internal class Ej07 : IEjecutarEjercicio
     {
         public void Ejecutar()
         {
-            int[] numero1 = { 1, 2, 3, 4, 3, 2, 1 };
-            int[] numero2 = { 1, 100, 50, -51, 1, 1 };
-            int[] numero3 = { 20, 10, -80, 10, 10, 15, 35 };
+            //Ejemplos del ejercicio
+            int[] numeroUno = { 1, 2, 3, 4, 3, 2, 1 };
+            int[] numeroDos = { 1, 100, 50, -51, 1, 1 };
+            int[] numeroTres = { 20, 10, -80, 10, 10, 15, 35 };
 
-            Console.WriteLine($"{encontrarIndice(numero1)}\n");
-            Console.WriteLine($"{encontrarIndice(numero2)}\n");
-            Console.WriteLine($"{encontrarIndice(numero3)}\n");
+            Console.WriteLine("Ejemplos del ejercicio");
+            Console.WriteLine($"{String.Join(", ", numeroUno)}| Indice: {encontrarIndice(numeroUno)}\n");
+            Console.WriteLine($"{String.Join(", ", numeroDos)}| Indice: {encontrarIndice(numeroDos)}\n");
+            Console.WriteLine($"{String.Join(", ", numeroTres)}| Indice: {encontrarIndice(numeroTres)}\n\n");
+            
+
+            Utils utils = new Utils();
+            int [] numero = utils.EntradaSplitNumero();
+            Console.WriteLine($"{String.Join(", ", numero)}| Indice: {encontrarIndice(numero)}\n");
+
 
             // EN TEORIA DEBERIA FUNCIONAR, PERO EN 4 MINUTOS DE BUCLE NO HA SALIDO
             // HAY QUE CAMBIAR LAS VARIABLES 'LEFT','RIGHT' A LONG Y LA ENTRADA DEL METODO A ARRAY DE LONGS 
@@ -62,7 +70,6 @@ namespace Tema_2
 
                 if (left.Sum() == right.Sum())
                 {
-                    Console.WriteLine($"{left.Sum()} -- {right.Sum()}");
                     return i;
                 }
 

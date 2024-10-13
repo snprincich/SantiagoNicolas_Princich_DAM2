@@ -8,7 +8,7 @@
 
 
            ejercicio = new Ej12();
-            ejercicio.Ejecutar();
+           ejercicio.Ejecutar();
         }
     }
 }

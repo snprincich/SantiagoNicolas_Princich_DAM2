@@ -22,9 +22,14 @@ namespace Tema_2
 
         public void Ejecutar()
         {
-            String entrada = "RRGBRGB";
-            
-            Console.WriteLine($"El ultimo color es : {PintarTriangulo(entrada)}");
+            //EJEMPLO EJERCICIO
+            Console.WriteLine("Ejemplo ejercicio");
+            string? entradaUno = "RRGBRGB";
+            Console.WriteLine($"El ultimo color es : {PintarTriangulo(entradaUno)}\n");
+
+            Console.WriteLine("Introduzca los colores. Ej.:(RBGGBR): ");
+            string? entrada = Console.ReadLine();
+            Console.WriteLine($"El ultimo color es : {PintarTriangulo(entrada)}\n");
         }
 
         private String PintarTriangulo(String entrada)
@@ -39,10 +44,6 @@ namespace Tema_2
                 String nuevaLinea = String.Empty;
                 for (int b = 0; b < lista[i].Length-1; b++)
                 {
-
-                    
-
-
                     // SI SON IGUALES ES EL MISMO, SI SON DIFERENTES ES EL COLOR QUE FALTA
                     if (lista[i][b] == lista[i][b + 1]) nuevaLinea += lista[i][b];
                     else
@@ -52,18 +53,13 @@ namespace Tema_2
                             if (ver != lista[i][b] && ver != lista[i][b + 1])
                                 nuevaLinea += ver;
                         }
-
                     }
-                    
                 }
                 lista.Add(nuevaLinea);
-
             }
-
             return lista.Last() ;
         }
     }
-
 }
 
 

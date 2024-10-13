@@ -17,12 +17,18 @@ Por ejemplo (Entrada --> Salida):
 
 namespace Tema_2
 {
-    internal class Ej6 : IEjecutarEjercicio
+    internal class Ej06 : IEjecutarEjercicio
     {
         public void Ejecutar()
         {
             Utils utils = Utils.GetInstance();
             int numero = utils.EntradaNumero();
+
+            while (numero < 0) {
+             Console.WriteLine("No se aceptan numeros negativos");
+            numero = utils.EntradaNumero();
+            }
+
             Console.WriteLine(PersistenciaMultiplicativa(numero));
         }
 
@@ -51,15 +57,6 @@ namespace Tema_2
             if (num >= 0)
             {
                 while (num > 9)
-                {
-                    num = num / 10;
-                    NumDigitos++;
-                }
-            }
-
-            else
-            {
-                while (num < -9)
                 {
                     num = num / 10;
                     NumDigitos++;

@@ -16,17 +16,29 @@ Entrada: 123456789 Salida: 987654321
 
 namespace Tema_2
 {
-    internal class Ej9 :IEjecutarEjercicio
+    internal class Ej09 :IEjecutarEjercicio
     {
 
         public void Ejecutar()
         {
-            int entrada1 = 42145;
-            int entrada2 = 145263;
-            int entrada3 = 123456789;
-            Console.WriteLine($"El numero {entrada1} al reves es: {ShortDescendente(entrada1)}");
-            Console.WriteLine($"El numero {entrada2} al reves es: {ShortDescendente(entrada2)}");
-            Console.WriteLine($"El numero {entrada3} al reves es: {ShortDescendente(entrada3)}");
+            //EJEMPLOS DEL EJERCICIO
+            Console.WriteLine("Ejemplos del ejercicio");
+            int entradaUno = 42145;
+            int entradaDos = 145263;
+            int entradaTres = 123456789;
+            Console.WriteLine($"El numero {entradaUno} al reves es: {ShortDescendente(entradaUno)}");
+            Console.WriteLine($"El numero {entradaDos} al reves es: {ShortDescendente(entradaDos)}");
+            Console.WriteLine($"El numero {entradaTres} al reves es: {ShortDescendente(entradaTres)}\n");
+
+
+            Utils utils = Utils.GetInstance();
+            int numero = utils.EntradaNumero();
+            while (numero < 0)
+            {
+                Console.WriteLine("No se aceptan numeros negativos");
+                numero = utils.EntradaNumero();
+            }
+            Console.WriteLine($"El numero {numero} al reves es: {ShortDescendente(numero)}");
         }
 
 

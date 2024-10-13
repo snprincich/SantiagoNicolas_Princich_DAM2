@@ -77,7 +77,7 @@ namespace Tema_2
         }
 
         //Comprueba que un texto tiene coma
-        public Boolean TieneComa(String texto)
+        private Boolean TieneComa(String texto)
         {
             if (!texto.Contains(','))
             {
@@ -88,7 +88,7 @@ namespace Tema_2
         }
 
         //Recive String devuelve true:es numero / false: no es numero
-        public Boolean EsNumero(string numero)
+        private Boolean EsNumero(string numero)
         {
             if (!int.TryParse(numero, out _))
             {
@@ -100,7 +100,7 @@ namespace Tema_2
         }
 
         //Comprueba que todos los elementos del array son numeros enteros
-        public Boolean ComprobarNumeroArray(string[] entrada)
+        private Boolean ComprobarNumeroArray(string[] entrada)
         {
             foreach (string ver in entrada)
             {

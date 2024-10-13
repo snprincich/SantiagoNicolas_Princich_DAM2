@@ -1,25 +1,26 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Numerics;
+
+/*
  Dada un array de enteros, encuentra todo los números que aparecen
 un número impar de veces.
  */
 
-using System.Numerics;
+
 
 namespace Tema_2
 {
-    internal class Ej4 : IEjecutarEjercicio
+    internal class Ej04 : IEjecutarEjercicio
     {
         public void Ejecutar()
         {
-            Console.WriteLine("Introduzca numeros separados por una coma");
-            String[] entrada = Console.ReadLine().Split(',');
+            Utils utils = Utils.GetInstance();
 
-            int[] numero = new int[entrada.Length];
-
-            for (int i = 0; i < entrada.Length; i++)
-            {
-                numero[i] = int.Parse(entrada[i]);
-            }
+            int[] numero = utils.EntradaSplitNumero();
 
             MostrarImpares(GetImpares(CargarDictionary(numero)));
         }
@@ -48,7 +49,7 @@ namespace Tema_2
             return impares;
         }
 
-        private Boolean EsImpar(int i)
+        private bool EsImpar(int i)
         {
             if (i % 2 == 0) return false;
             return true;
@@ -56,10 +57,10 @@ namespace Tema_2
 
         private void MostrarImpares(HashSet<KeyValuePair<int, int>> impares)
         {
-            if (impares.Count == 0) Console.WriteLine("Ningun numero se repite un numero impar de veces");
+            if (impares.Count == 0) Console.WriteLine("Ningun numero aparece un numero impar de veces");
             else
             {
-                Console.WriteLine("Los numeros que se repiten un numero de veces impares son: ");
+                Console.WriteLine("Los numeros que aparecen un numero impar de veces son: ");
                 foreach (var ver in impares)
                 {
                     Console.WriteLine($"El numero {ver.Key} aparece {ver.Value} veces.");
