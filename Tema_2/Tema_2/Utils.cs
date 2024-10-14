@@ -88,7 +88,7 @@ namespace Tema_2
         }
 
         //Recive String devuelve true:es numero / false: no es numero
-        private Boolean EsNumero(string numero)
+        private bool EsNumero(string numero)
         {
             if (!int.TryParse(numero, out _))
             {
