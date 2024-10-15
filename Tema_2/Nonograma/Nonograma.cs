@@ -13,7 +13,7 @@ namespace Nonograma
         public bool[][] ColumnaCompletados { get; set; }
         public  int[][] Fila { get; }
         public bool[][] FilaCompletados { get; set; }
-        public  int[,] Solucion { get; set; }
+        public int[,] Solucion { get; set; }
 
 
 

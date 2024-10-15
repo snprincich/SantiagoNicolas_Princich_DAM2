@@ -81,7 +81,7 @@ namespace Nonograma
         }
 
         //PINTA LAS CASILLAS QUE SE PUEDEN DEDUCIR DESDE EL INICIO
-        public void PrimeraPasada()
+        public void DeducirPrimerosPosibles()
         {
             //COLUMNAS
             for (int i = 0; i < nonograma.Columna.Length; i++)
@@ -173,49 +173,7 @@ namespace Nonograma
 
         }
 
-
-        //COMPRUEBA SI UNA PISTA ESTA TERMINADA
-        //SOLO FILAS
-        //PARAMETROS ARRAY DE PISTAS (FILA) Y POSICION DE LA FILA
-        public void ComprobarTerminadaIndividual(int[] fila, int posicion)
-        {
-            List<int[]> posiciones = PosiblesPosicionesFila(fila, posicion);
-            //RECORRE LAS PISTAS
-            for (int i = 0; i < fila.Length; i++)
-            {
-                //RECORRE LAS CASILLAS
-                for (int b = 0; b < nonograma.Columna.Length; b++)
-                {
-                    //SI ENCONTRAMOS UNA CASILLA PINTADA 
-                    if (nonograma.Solucion[posicion, b] == 1)
-                    {
-                        //SE COMPRUEBA QUE ESTE DENTRO DE LA POSICION MINIMA Y MAXIMA DE LA PISTA
-                        if (posiciones[i].Min() <= b && posiciones[i].Max() >= b)
-                        {
-                            //COMPRUEBA QUE A PARTIR DEL INDICE B HAYA CASILLAS PINTADAS EQUIVALENTE A LA PISTA
-                            if (ComprobarCasillasAlrededor(posicion, fila[i], b))
-                            {
-                                //SE CREA UN ARRAY CON LAS PISTAS POSTERIORES A LA ACTUAL
-                                int[] arrayCortado = new int[(fila.Length - i)-1];
-                                Array.Copy(fila, i + 1, arrayCortado, 0, ((fila.Length - i) - 1));
-
-                                //CUANTO ESPACIO NECESITAMOS PARA LAS PISTAS + 1 (ESPACIO PROHIBIDO ENTRE PISTA Y PISTA)
-                                int ocupa = Ocupa(arrayCortado) + 1;
-
-                                //HAY HUECO SOLO COMPRUEBA HACIA LA IZQUIERDA
-                                if (HayHueco(CrearArrayUnidimensionalFila(posicion), ocupa, arrayCortado))
-                                {
-                                    nonograma.FilaCompletados[posicion][i] = true;
-                                }
-
-
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        
 
         //COMPRUEBA SI HAY CASILLAS SUFICIENTES PARA QUE ENTREN LAS PISTAS QUE ENTRAN POR PARAMETRO
         //QUIZAS DA EXCEPCION POR SALIRSE DEL ARRAY
@@ -253,65 +211,8 @@ namespace Nonograma
             return false;
         }
 
-        //DEBERIA FUNCIONAR
-        //COMPRUEBA SI HAY CASILLAS PINTADAS EQUIVALENTES A LA PRUEBA ALREDEDOR DEL INDICE 
-        //POSICION (FILA) DEL TABLERO PINTADO
-        //PISTA A BUSCAR
-        //INDICE DE LA CASILLA
-        public Boolean ComprobarCasillasAlrededor(int array, int pista, int indice)
-        {
-            //HA ENCUENTRA LA PISTA COMPLETA A PARTIR DE ESE INDICE?
-            bool encontrado = false;
-
-            //CUANTOS PINTADOS ENCUENTRA INMEDIATAMENTE ANTES Y DESPUES DEL INDICE
-            int contIzq = 0;
-            int contDer = 0;
-
-            //SEGUN QUE TAN GRANDE SEA LA PISTA SE MUEVE MAS O MENOS CASILLAS
-            for (int b = 1; b < pista; b++)
-            {
-                //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA-1 POSICIONES A LA IZQUIERDA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ATRAS HAY UN 1
-                if ((indice - (pista - 1) > -1) && (nonograma.Solucion[array, indice - b] == 1))
-                {
-                    contIzq++;
-                }
-                //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA+1 POSICIONES A LA DERECHA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ADELANTE HAY UN 1
-                if ((indice + (pista - 1) < nonograma.Columna.Length) && (nonograma.Solucion[array, indice + b] == 1))
-                {
-                    contDer++;
-                }
-            }
-
-            //SI HA ENCONTRADO A LA IZQUIERDA y A LA DERECHA SUFICIENTE PINTADOS PARA FORMAR LA PISTA ES VERDADERO
-            //SI HAY MAS, LAS CASILLAS NO LE PERTENECEN A LA PISTA
-            //SI HAY MENOS PUEDE SER QUE LE PERTENEZCAN
-            if ((contIzq == pista - 1 || contDer == pista - 1) && (contIzq + contDer + 1 == pista))
-            {
-                encontrado = true;
-            }
-
-
-
-            return encontrado;
-        }
-
-        //DE CADA PISTA TE DICE LA POSICION MINIMA Y MAXIMA EN LA QUE PUEDE ESTAR
-        //DEVUELVE UNA LISTA DE ARRAYS CON LA POSICION MINIMA Y MAXIMA CORRESPONDIENTE
-        public List<int[]> PosiblesPosicionesFila(int[] array, int posicion)
-        {
-            List<int[]> posiciones = new List<int[]>();
-            int inicio;
-            int final;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                inicio = EmpiezaEn(array, i);
-                final = inicio + (nonograma.Columna.Length - Ocupa(array));
-                posiciones.Add([inicio, final]);
-            }
-
-            return posiciones;
-        }
+        
+        
 
         public int[] CrearArrayUnidimensionalFila(int posicion)
         {
@@ -338,12 +239,11 @@ namespace Nonograma
 
             return posiciones;
         }
-
+        //ABANDONADA POR AHORA
         //SIN TERMINAR
+        //LA IDEA ES HACER LO MISMO QUE CON LA PRIMERA DEDUCCION PERO EN VEZ DE USAR LA LONGITUD DEL ARRAY USAR LA LONGITUD ENTRE 2 CASILLAS IMPOSIBLES
         public void SegundaPasada()
         {
-
-
             for (int i = 0; i < nonograma.Fila.Length; i++)
             {
                 List<int> imposibles = VerImposibles(i);
@@ -384,15 +284,151 @@ namespace Nonograma
 
         public void Ejecutar()
         {
-            PrimeraPasada();
+            DeducirPrimerosPosibles();
             ComprobarTerminadas();
+        }
 
+        public void AreaPruebas()
+        {
+            //PROBANDO ComprobarTerminadaIndividual(), PosiblesPosiciones(), ComprobarCasillasAlrededor
+            int[] pruebas= [1, 2];
+            bool[] pistasCompletadas = [false, false];
+            int[] mapa = { 0, 1, 2, 0, 1 };
 
-            /*while (true)
+            MostrarPruebas(mapa);
+        }
+        //SIN TERMINAR
+        //EN PROCESO
+        //COMPRUEBA SI UNA PISTA ESTA TERMINADA
+        //PARAMETROS ARRAY DE PISTAS (FILA) Y POSICION DE LA FILA
+        public void ComprobarTerminadaIndividual(int[] mapa, bool[] pistas, bool[] pistasCompletadas)
+        {
+            List<int[]> posiciones = PosiblesPosiciones(mapa);
+            //RECORRE LAS PISTAS
+            for (int i = 0; i < mapa.Length; i++)
             {
+                //RECORRE LAS CASILLAS
+                for (int b = 0; b < nonograma.Columna.Length; b++)
+                {
+                    //SI ENCONTRAMOS UNA CASILLA PINTADA 
+                    if (mapa[b] == 1)
+                    {
+                        //SE COMPRUEBA QUE ESTE DENTRO DE LA POSICION MINIMA Y MAXIMA DE LA PISTA
+                        if (posiciones[i].Min() <= b && posiciones[i].Max() >= b)
+                        {
+                            //COMPRUEBA QUE A PARTIR DEL INDICE B HAYA CASILLAS PINTADAS EQUIVALENTE A LA PISTA
+                            if (ComprobarCasillasAlrededor(posicion, fila[i], b))
+                            {
+                                //SE CREA UN ARRAY CON LAS PISTAS POSTERIORES A LA ACTUAL
+                                int[] arrayCortado = new int[pistas.Length - i];
+                                Array.Copy(pistas, i + 1, arrayCortado, 0, ((pistas.Length - i) - 1));
+
+                                //CUANTO ESPACIO NECESITAMOS PARA LAS PISTAS
+                                //+ 1 (ESPACIO PROHIBIDO ENTRE PISTA Y PISTA)
+                                int ocupa = Ocupa(arrayCortado) + 1;
+
+                                //HAY HUECO SOLO COMPRUEBA HACIA LA DERECHA
+                                if (HayHueco(mapa, ocupa, arrayCortado))
+                                {
+                                    pistasCompletadas[i] = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //FALTA PROBARLO
+        //DE CADA PISTA TE DICE LA POSICION MINIMA Y MAXIMA EN LA QUE PUEDE ESTAR
+        //DEVUELVE UNA LISTA DE ARRAYS CON LA POSICION MINIMA Y MAXIMA CORRESPONDIENTE
+        public List<int[]> PosiblesPosiciones(int[] mapa)
+        {
+            List<int[]> posiciones = new List<int[]>();
+            int inicio;
+            int final;
+
+            for (int i = 0; i < mapa.Length; i++)
+            {
+                inicio = EmpiezaEn(mapa, i);
+                final = inicio + (nonograma.Columna.Length - Ocupa(mapa));
+                posiciones.Add([inicio, final]);
+            }
+
+            return posiciones;
+        }
+
+        //EN PROCESO
+        //SIN TERMINAR
+        //COMPRUEBA SI HAY CASILLAS PINTADAS EQUIVALENTES A LA PRUEBA ALREDEDOR DEL INDICE 
+        //MAPA
+        //PISTA A BUSCAR
+        //INDICE DE LA CASILLA EN LA CUAL BUSCAS ALREDEDOR
+        public bool ComprobarCasillasAlrededor(int [] mapa, int pista, int indice)
+        {
+            //HA ENCUENTRA LA PISTA COMPLETA A PARTIR DE ESE INDICE?
+            bool encontrado = false;
+
+            //CUANTOS PINTADOS ENCUENTRA INMEDIATAMENTE ANTES Y DESPUES DEL INDICE
+            int contIzq = 0;
+            int contDer = 0;
+
+            //SEGUN QUE TAN GRANDE SEA LA PISTA SE MUEVE MAS O MENOS CASILLAS
+            for (int b = 1; b < pista; b++)
+            {
+                //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA-1 POSICIONES A LA IZQUIERDA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ATRAS HAY UN 1
+                if ((indice - (pista - 1) > -1) && (mapa[indice - b] == 1))
+                {
+                    contIzq++;
+                }
+                //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA+1 POSICIONES A LA DERECHA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ADELANTE HAY UN 1
+                if ((indice + (pista - 1) < mapa.Length) && (mapa[indice + b] == 1))
+                {
+                    contDer++;
+                }
+            }
+
+            //SI HA ENCONTRADO A LA IZQUIERDA y A LA DERECHA SUFICIENTE PINTADOS PARA FORMAR LA PISTA ES VERDADERO
+            //SI HAY MAS, LAS CASILLAS NO LE PERTENECEN A LA PISTA
+            //SI HAY MENOS PUEDE SER QUE LE PERTENEZCAN
+            if ((contIzq == pista - 1 || contDer == pista - 1) && (contIzq + contDer + 1 == pista))
+            {
+                encontrado = true;
+            }
 
 
-            }*/
+
+            return encontrado;
+        }
+        public void MostrarPruebas(int[] mapa)
+        {
+
+            for (int j = 0; j < mapa.Length; j++)
+            {
+                
+                if (mapa[j] == 1)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.Write("  ");
+                    Console.ResetColor();
+
+                }
+                else if (mapa[j] == 2)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.Write("  ");
+                    Console.ResetColor();
+
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.Write("  ");
+                    Console.ResetColor();
+
+                }
+                
+
+            }
 
         }
     }

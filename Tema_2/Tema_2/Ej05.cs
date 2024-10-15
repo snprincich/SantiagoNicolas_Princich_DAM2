@@ -13,6 +13,7 @@ namespace Tema_2
             Utils utils = Utils.GetInstance();
             string? [] texto = utils.EntradaSplitString();
             MostrarLista(QuitarRepetidos(texto));
+            
 
             int[] numeros = utils.EntradaSplitNumero();
             MostrarLista(QuitarRepetidos(numeros));

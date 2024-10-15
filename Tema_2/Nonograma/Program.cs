@@ -53,16 +53,16 @@
 
 
 
-            Nonograma consola = new Nonograma(fila, columna);
-            consola.Mostrar();
+            //Nonograma consola = new Nonograma(fila, columna);
+            //consola.Mostrar();
             Resolver resolver = new Resolver();
 
 
-            resolver.Ejecutar();
-            Console.WriteLine();
-            consola.Mostrar();
-            
-           
+            // resolver.Ejecutar();
+            // Console.WriteLine();
+            // consola.Mostrar();
+
+            resolver.AreaPruebas();
         }
     }
 
