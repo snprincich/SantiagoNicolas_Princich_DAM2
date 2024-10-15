@@ -1,0 +1,33 @@
+﻿<Window x:Class="WPF_FirstAPP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_FirstAPP"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="193*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="boton" Content="Triangulo" HorizontalAlignment="Left" Margin="46,159,0,0" VerticalAlignment="Top" Click="Button_Click" Height="70" Width="147" Grid.Column="1" ClickMode="Press"/>
+        <TextBox x:Name="texto1" HorizontalAlignment="Center" Margin="0,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="50" TextChanged="TextBox_TextChanged" Text=""/>
+        <Label x:Name="principal" Content="Resultado: " HorizontalAlignment="Left" Margin="335,330,0,0" VerticalAlignment="Top" Height="49" Width="158" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.599"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.606"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <TextBox x:Name="texto2" HorizontalAlignment="Center" Margin="0,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="50" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox x:Name="texto3" HorizontalAlignment="Left" Margin="127,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="50"/>
+        <Label Content="Lado 1" HorizontalAlignment="Left" Margin="43,91,0,0" VerticalAlignment="Top" Height="36"/>
+        <Label Content="Lado 2" HorizontalAlignment="Left" Margin="43,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.296,0.493"/>
+        <Label Content="Lado 3" HorizontalAlignment="Left" Margin="43,253,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
