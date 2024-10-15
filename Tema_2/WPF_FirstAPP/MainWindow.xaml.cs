@@ -23,37 +23,13 @@ namespace WPF_FirstAPP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int lado1;
-            int.TryParse(texto1.Text, out lado1);
-
-            int lado2;
-            int.TryParse(texto2.Text, out lado2);
-
-            int lado3;
-            int.TryParse(texto3.Text, out lado3);
-
-            principal.Content = principal.Content.ToString().Split(":")[0]+=": ";
-
-            if (lado1 == lado2 && lado1 == lado3)
-            {
-                principal.Content += "Equilatero";
-            }
-            else if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3)
-            {
-                principal.Content += "Isosceles";
-            }
-            else principal.Content += "Escaleno";
-
+            resultado.Content += ((Button)e.Source).Content.ToString();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Calc_Click (object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
