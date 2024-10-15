@@ -292,19 +292,14 @@ namespace Nonograma
 
         public void AreaPruebas()
         {
-            //PROBANDO ComprobarTerminadaIndividual(), PosiblesPosiciones(), ComprobarCasillasAlrededor
-            int[] pistas = { 2, 2, 2 };
+            //PROBANDO ComprobarTerminadaIndividual(), ComprobarCasillasAlrededor
+            int[] pistas = {4,2};
             bool[] pistasCompletadas = [false, false];
-            int[] mapa = { 0,1,2,0,1,0,0,0,0,0 };
+            int[] mapa = {0,1,1,1,1,1,1,1,0,0};
+
+            Console.WriteLine(ComprobarCasillasAlrededor(mapa, pistas[0], 1));
 
             //MostrarPruebas(mapa);
-            List<int[]> posiciones = PosiblesPosiciones(pistas, mapa);
-
-            foreach (var item in posiciones)
-            {
-                Console.WriteLine(String.Join("-", item));
-            }
-
         }
 
         //SIN TERMINAR
@@ -377,16 +372,20 @@ namespace Nonograma
             return posiciones;
         }
 
-        //EN PROCESO
-        //SIN TERMINAR
-        //COMPRUEBA SI HAY CASILLAS PINTADAS EQUIVALENTES A LA PRUEBA ALREDEDOR DEL INDICE 
-        //MAPA
+        //FUNCIONA
+        //COMPRUEBA SI HAY CASILLAS PINTADAS EQUIVALENTES A LA PISTA A LA DERECHA y IZQUIERDA DEL INDICE
+        //SI DETECTA UNA CASILLA QUE NO ESTE PINTADA PARA DE CONTAR EN ESA DIRECCION
+        //MAPA EN EL QUE BUSCAR
         //PISTA A BUSCAR
         //INDICE DE LA CASILLA EN LA CUAL BUSCAS ALREDEDOR
         public bool ComprobarCasillasAlrededor(int [] mapa, int pista, int indice)
         {
-            //HA ENCUENTRA LA PISTA COMPLETA A PARTIR DE ESE INDICE?
+            //HA ENCONTRADO LA PISTA COMPLETA A PARTIR DE ESE INDICE?
             bool encontrado = false;
+
+            //PARA DE BUSCAR EN ESTA DIRECCION SI ENCUENTRA UNA CASILLA QUE NO ESTA PINTADA
+            bool buscIzq = true;
+            bool buscDer = true;
 
             //CUANTOS PINTADOS ENCUENTRA INMEDIATAMENTE ANTES Y DESPUES DEL INDICE
             int contIzq = 0;
@@ -395,28 +394,36 @@ namespace Nonograma
             //SEGUN QUE TAN GRANDE SEA LA PISTA SE MUEVE MAS O MENOS CASILLAS
             for (int b = 1; b < pista; b++)
             {
-                //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA-1 POSICIONES A LA IZQUIERDA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ATRAS HAY UN 1
-                if ((indice - (pista - 1) > -1) && (mapa[indice - b] == 1))
+                //INDICE-(PISTA-1) EVITA SALIRSE DEL RANGO DEL ARRAY y B POSICIONES HACIA ATRAS HAY UN 1
+                if ((indice - b > -1) && (mapa[indice - b] == 1) && buscIzq)
                 {
                     contIzq++;
                 }
+                else buscIzq=false;
                 //SI LA PISTA ENTRA ENTRE EL INDICE Y PISTA+1 POSICIONES A LA DERECHA (EVITAR SALIRSE DEL RANGO DEL ARRAY) y B POSICIONES HACIA ADELANTE HAY UN 1
-                if ((indice + (pista - 1) < mapa.Length) && (mapa[indice + b] == 1))
+                if ((indice + b < mapa.Length) && (mapa[indice + b] == 1) && buscDer)
                 {
                     contDer++;
                 }
+                else buscDer=false;
             }
 
-            //SI HA ENCONTRADO A LA IZQUIERDA y A LA DERECHA SUFICIENTE PINTADOS PARA FORMAR LA PISTA ES VERDADERO
+            /*
+             * SI HA ENCONTRADO A LA IZQUIERDA y A LA DERECHA SUFICIENTE PINTADOS PARA FORMAR LA PISTA y
+             * EL LA SIGUIENTE CASILLA TANTO A LA IZQUIERDA COMO A LA DERECHA NO ESTA PINTADA O SE SALE DEL MAPA, ES VERDADERO
+            */
             //SI HAY MAS, LAS CASILLAS NO LE PERTENECEN A LA PISTA
             //SI HAY MENOS PUEDE SER QUE LE PERTENEZCAN
-            if ((contIzq == pista - 1 || contDer == pista - 1) && (contIzq + contDer + 1 == pista))
+            int indiceIzq = indice - contIzq - 1;
+            int indiceDer = indice + contDer + 1;
+            if (contIzq+contDer+1 == pista && (indiceIzq < 0 || mapa[indice - contIzq - 1] != 1) && (indiceDer > mapa.Length + 1 || mapa[indice + contDer + 1] != 1))
             {
                 encontrado = true;
             }
 
 
-
+            
+            
             return encontrado;
         }
         public void MostrarPruebas(int[] mapa)
