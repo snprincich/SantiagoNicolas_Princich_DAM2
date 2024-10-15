@@ -69,6 +69,8 @@ namespace Nonograma
             return false;
         }
 
+        //INDICA EN CUAL POSICION SE EMPIEZA A PINTAR UN NUMERO
+        //RECIBE UN ARRAY CON LAS PISTAS Y LA POSICION DE LA PISTA QUE QUEREMOS SABER
         public int EmpiezaEn(int[] array, int posicion)
         {
             int cont = 0;
@@ -291,24 +293,32 @@ namespace Nonograma
         public void AreaPruebas()
         {
             //PROBANDO ComprobarTerminadaIndividual(), PosiblesPosiciones(), ComprobarCasillasAlrededor
-            int[] pruebas= [1, 2];
+            int[] pistas = { 2, 2, 2 };
             bool[] pistasCompletadas = [false, false];
-            int[] mapa = { 0, 1, 2, 0, 1 };
+            int[] mapa = { 0,1,2,0,1,0,0,0,0,0 };
 
-            MostrarPruebas(mapa);
+            //MostrarPruebas(mapa);
+            List<int[]> posiciones = PosiblesPosiciones(pistas, mapa);
+
+            foreach (var item in posiciones)
+            {
+                Console.WriteLine(String.Join("-", item));
+            }
+
         }
+
         //SIN TERMINAR
         //EN PROCESO
         //COMPRUEBA SI UNA PISTA ESTA TERMINADA
         //PARAMETROS ARRAY DE PISTAS (FILA) Y POSICION DE LA FILA
-        public void ComprobarTerminadaIndividual(int[] mapa, bool[] pistas, bool[] pistasCompletadas)
+        public void ComprobarTerminadaIndividual(int[] mapa, int[] pistas, bool[] pistasCompletadas)
         {
-            List<int[]> posiciones = PosiblesPosiciones(mapa);
+            List<int[]> posiciones = PosiblesPosiciones(pistas,mapa);
             //RECORRE LAS PISTAS
             for (int i = 0; i < mapa.Length; i++)
             {
                 //RECORRE LAS CASILLAS
-                for (int b = 0; b < nonograma.Columna.Length; b++)
+                for (int b = 0; b < mapa.Length; b++)
                 {
                     //SI ENCONTRAMOS UNA CASILLA PINTADA 
                     if (mapa[b] == 1)
@@ -317,7 +327,7 @@ namespace Nonograma
                         if (posiciones[i].Min() <= b && posiciones[i].Max() >= b)
                         {
                             //COMPRUEBA QUE A PARTIR DEL INDICE B HAYA CASILLAS PINTADAS EQUIVALENTE A LA PISTA
-                            if (ComprobarCasillasAlrededor(posicion, fila[i], b))
+                            if (ComprobarCasillasAlrededor(mapa, pistas[i], b))
                             {
                                 //SE CREA UN ARRAY CON LAS PISTAS POSTERIORES A LA ACTUAL
                                 int[] arrayCortado = new int[pistas.Length - i];
@@ -338,19 +348,29 @@ namespace Nonograma
                 }
             }
         }
-        //FALTA PROBARLO
+
+        //FUNCIONA
         //DE CADA PISTA TE DICE LA POSICION MINIMA Y MAXIMA EN LA QUE PUEDE ESTAR
         //DEVUELVE UNA LISTA DE ARRAYS CON LA POSICION MINIMA Y MAXIMA CORRESPONDIENTE
-        public List<int[]> PosiblesPosiciones(int[] mapa)
+        public List<int[]> PosiblesPosiciones(int[] pista, int[] mapa)
         {
             List<int[]> posiciones = new List<int[]>();
             int inicio;
             int final;
 
-            for (int i = 0; i < mapa.Length; i++)
+            for (int i = 0; i < pista.Length; i++)
             {
-                inicio = EmpiezaEn(mapa, i);
-                final = inicio + (nonograma.Columna.Length - Ocupa(mapa));
+
+                    //LO QUE OCUPAN LAS PISTAS ANTERIORES +1 (CASILLA IMPOSIBLE)
+                    inicio = Ocupa(pista[0..i])+1;
+
+
+                    //(INICIO + PISTA) + (DESPLAZAMIENTO) -1 = POSICION MAXIMA
+                    final = inicio + pista[i] + (mapa.Length - Ocupa(pista)-1);
+                    Console.WriteLine(final);
+                
+                
+                
                 posiciones.Add([inicio, final]);
             }
 
