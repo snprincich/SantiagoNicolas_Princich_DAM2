@@ -24,11 +24,13 @@ namespace WPF_FirstAPP
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             resultado.Content += ((Button)e.Source).Content.ToString();
+            
         }
 
         private void Calc_Click (object sender, RoutedEventArgs e)
         {
-
+            Calculadora calculadora = new Calculadora();
+            calculadora.Calcular(resultado.Content.ToString());
         }
 
     }
