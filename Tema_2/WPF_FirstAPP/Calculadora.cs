@@ -32,7 +32,7 @@ namespace WPF_FirstAPP
                 {
                     int index = text.IndexOf('(');
                     //LLAMA A 'CALCULAR' DE FORMA RECURSIVA MANDANDOLE SOLO EL CONTENIDO QUE HAY ENTE PARENTESIS
-                    text = text.Replace(text.Substring(index, CalcIndexCerrarParentesis(text, index) - index + 1), Calcular(text.Substring(index + 1, CalcIndexCerrarParentesis(text, text.IndexOf('(')) - index - 1)));
+                    text = text.Replace(text.Substring(index, CalcIndexCerrarParentesis(text, index) - index + 1), GestorPrioridades(text.Substring(index + 1, CalcIndexCerrarParentesis(text, text.IndexOf('(')) - index - 1)));
                 }
                 else if (text.IndexOfAny(['x', '÷']) != -1) text = GestorOperacion(text, text.IndexOfAny(['x', '÷']));
                 else if (text.IndexOfAny(['+', '-']) != -1) text = GestorOperacion(text, text.IndexOfAny(['+', '-']));
