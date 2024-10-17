@@ -29,9 +29,19 @@ namespace WPF_FirstAPP
 
         private void Calc_Click (object sender, RoutedEventArgs e)
         {
+            
             Calculadora calculadora = new Calculadora();
-            calculadora.Calcular(resultado.Content.ToString());
+            resultado.Content =calculadora.Calcular(resultado.Content.ToString());
+            //resultado.Content = calculadora.Calcular("10x(5x5+(2x3-1))+10x10");
+
         }
 
+        private void Borrar_Click(object sender, RoutedEventArgs e)
+        {
+            if (resultado.Content.ToString().Length > 0)
+            {
+                resultado.Content = resultado.Content.ToString()[..^1];
+            }
+        }
     }
 }

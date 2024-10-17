@@ -292,7 +292,7 @@ namespace Nonograma
 
         public void AreaPruebas()
         {
-            //PROBANDO ComprobarTerminadaIndividual(), ComprobarCasillasAlrededor
+            //PROBANDO ComprobarTerminadaIndividual()
             int[] pistas = {4,2};
             bool[] pistasCompletadas = [false, false];
             int[] mapa = {0,1,1,1,1,1,1,1,0,0};

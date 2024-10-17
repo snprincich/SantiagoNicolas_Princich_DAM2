@@ -5,39 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_FirstAPP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="327">
-    <Grid Background="#FFB0B5B4">
+        
+        Title="MainWindow" Height="400" Width="320" >
+    <Grid Margin="0,0,10,-6">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="207*"/>
-            <ColumnDefinition Width="193*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="calc" Content="=&#xD;&#xA;" HorizontalAlignment="Left" Margin="51,386,0,0" VerticalAlignment="Top" Click="Calc_Click" Height="38" Width="97" ClickMode="Press" Grid.Column="1"/>
-        <Label x:Name="principal" Content="Resultado: " HorizontalAlignment="Left" Margin="335,330,0,0" VerticalAlignment="Top" Height="49" Width="158" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.599"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.606"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Label x:Name="resultado" Content="" HorizontalAlignment="Left" Margin="35,10,0,0" VerticalAlignment="Top" Height="37" Width="257" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF131313" Foreground="Black"/>
-        <Button x:Name="uno" Content="1" HorizontalAlignment="Left" Margin="25,102,0,0" VerticalAlignment="Top" Height="37" Click="Button_Click" Width="40"/>
-        <Button x:Name="dos" Content="2" Margin="98,102,31,0" VerticalAlignment="Top" Height="38" Click="Button_Click"/>
-        <Button x:Name="tres" Content="3" HorizontalAlignment="Left" Margin="169,102,0,0" VerticalAlignment="Top" Height="38" Grid.ColumnSpan="2" Width="35" Click="Button_Click"/>
-        <Button x:Name="cuatro" Content="5" HorizontalAlignment="Left" Margin="25,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.543,-0.444" Height="37" Width="40" Click="Button_Click"/>
-        <Button x:Name="cinco" Content="6" HorizontalAlignment="Left" Margin="98,194,0,0" VerticalAlignment="Top" Height="38" Width="40" RenderTransformOrigin="0.535,0.586" Click="Button_Click"/>
-        <Button x:Name="seis" Content="7" HorizontalAlignment="Left" Margin="164,194,0,0" VerticalAlignment="Top" Height="37" Width="40" Grid.ColumnSpan="2" Click="Button_Click"/>
-        <Button x:Name="siete" Content="7" HorizontalAlignment="Left" Margin="25,287,0,0" VerticalAlignment="Top" Height="35" Width="40" Click="Button_Click"/>
-        <Button x:Name="ocho" Content="8" HorizontalAlignment="Left" Margin="98,286,0,0" VerticalAlignment="Top" Height="38" Width="40" RenderTransformOrigin="0.443,1.352" Click="Button_Click"/>
-        <Button x:Name="nueve" Content="9" HorizontalAlignment="Left" Margin="164,284,0,0" VerticalAlignment="Top" Height="38" Width="40" Grid.ColumnSpan="2" Click="Button_Click"/>
-        <Button x:Name="cero" Content="0" HorizontalAlignment="Left" Margin="25,378,0,0" VerticalAlignment="Top" Height="40" Width="40" Click="Button_Click"/>
-        <Button x:Name="pi" Content="π" HorizontalAlignment="Left" Margin="98,380,0,0" VerticalAlignment="Top" Height="38" Width="40" Click="Button_Click"/>
-        <Button x:Name="dividir" Content="÷" HorizontalAlignment="Left" Margin="164,378,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="40" Width="40" Click="Button_Click"/>
-        <Button x:Name="sumar" Grid.Column="1" Content="+" HorizontalAlignment="Left" Margin="79,102,0,0" VerticalAlignment="Top" Height="39" Width="41" Click="Button_Click"/>
-        <Button x:Name="restar" Grid.Column="1" Content="-" HorizontalAlignment="Left" Margin="80,193,0,0" VerticalAlignment="Top" Height="38" Width="40" Click="Button_Click"/>
-        <Button x:Name="multiplicar" Grid.Column="1" Content="x" HorizontalAlignment="Left" Margin="80,287,0,0" VerticalAlignment="Top" Height="36" Width="43" Click="Button_Click"/>
+
+        <Label x:Name="resultado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="273" Height="39"/>
+
+
+        <Button x:Name="uno" Content="1" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="dos" Content="2" HorizontalAlignment="Left" Margin="70,80,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="tres" Content="3" HorizontalAlignment="Left" Margin="130,80,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="sumar" Content="+" HorizontalAlignment="Left" Margin="190,80,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="abrirParentesis" Content="(" HorizontalAlignment="Left" Margin="250,80,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+
+
+        <Button x:Name="cuatro" Content="4" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="cinco" Content="5" HorizontalAlignment="Left" Margin="70,140,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="seis" Content="6" HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="restar" Content="-" HorizontalAlignment="Left" Margin="190,140,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="cerrarParentesis" Content=")" HorizontalAlignment="Left" Margin="250,140,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+
+
+        <Button x:Name="siete" Content="7" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="ocho" Content="8" HorizontalAlignment="Left" Margin="70,200,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="nueve" Content="9" HorizontalAlignment="Left" Margin="130,200,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="multiplicar" Content="x" HorizontalAlignment="Left" Margin="190,200,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+
+        <Button x:Name="cero" Content="0" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="pi" Content="π" HorizontalAlignment="Left" Margin="70,260,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="dividir" Content="÷" HorizontalAlignment="Left" Margin="130,260,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Button_Click"/>
+        <Button x:Name="igual" Content="=" HorizontalAlignment="Left" Margin="190,260,0,0" VerticalAlignment="Top" Height="50" Width="50" FontSize="20" Click="Calc_Click"/>
+
+
+        <Button x:Name="borrar" Content="C" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top" Height="50" Width="230" FontSize="20" Click="Borrar_Click"/>
 
     </Grid>
 </Window>
