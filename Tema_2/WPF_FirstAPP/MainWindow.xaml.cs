@@ -32,6 +32,8 @@ namespace WPF_FirstAPP
             
             Calculadora calculadora = new Calculadora();
             resultado.Content =calculadora.Calcular(resultado.Content.ToString());
+
+            //PRUEBAS
             //resultado.Content = calculadora.Calcular("10x(5x5+(2x3-1))+10x10");
 
         }

@@ -11,6 +11,7 @@ using System.Windows.Media;
 
 //EN TODO ESTA CLASE UTILIZO 'REPLACE' PARA REMPLAZAR EL STRING, ENTIENDO QUE ESTO PUEDE LLEGAR A CAUSAR PROBLEMAS
 //INVESTIGANDO HE VISTO QUE 'REMOVE' E 'INSERT' SON UNA MEJOR OPCION YA QUE TRABAJAN CON INDICES
+
 //FALTA 'PI', DIVIDIR ENTRE 0 Y OTRAS FORMAS DE ROMPER LA CALCULADORA
 //FALTA OPERACIONES CON NUMEROS DECIMALES
 //SI LA OPERACION ES POR EJEMPLO -20, SE QUEDA EN BUCLE HACIENDO 0-20 = -20
@@ -38,8 +39,6 @@ namespace WPF_FirstAPP
                 else if (text.IndexOfAny(['+', '-']) != -1) text = GestorOperacion(text, text.IndexOfAny(['+', '-']));
                 else bucle = false;
             }
-
-
 
             return text;
         }
@@ -112,8 +111,6 @@ namespace WPF_FirstAPP
                     }
 
                 }
-
-
 
                 if (!izq && !der) bucle = false;
             }
