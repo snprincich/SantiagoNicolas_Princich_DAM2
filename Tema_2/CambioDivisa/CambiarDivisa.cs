@@ -10,17 +10,21 @@ namespace CambioDivisa
     
     internal class CambiarDivisa
     {
-        //FALTA CAMBIAR
         private const double DOLAR= 1;
-        private const double EURO = 1;
-        private const double LIBRA = 1;
+        private const double EURO = 1.05;
+        private const double LIBRA = 1.30;
 
-        public static void Calcular(TextBox entrada, ComboBox from, ComboBox to)
+        public static string Cambiar(TextBox entrada, ComboBox from, ComboBox to)
         {
-            double resultado = Divisa(from.Text) * Divisa(to.Text) * int.Parse(entrada.Text);
-            LecturaEscritura.Escribir(DateTime.Today.ToString()+ " Importe " + entrada.Text + from.Text +" - " +resultado.ToString() +to.Text);
+            //DEFAULT 0
+            int valor;
+            int.TryParse(entrada.Text, out valor);
+
+            double resultado = Divisa(from.Text) / Divisa(to.Text) * valor;
+            return DateTime.Now.ToString() + " Importe " + valor + " " + from.Text + " - " + resultado.ToString("F2") + " " + to.Text;
+
         }
-        private static double Divisa(String divisa)
+        private static double Divisa(string divisa)
         {
             switch (divisa)
             {
