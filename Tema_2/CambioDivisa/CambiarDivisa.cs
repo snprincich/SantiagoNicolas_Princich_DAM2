@@ -14,15 +14,10 @@ namespace CambioDivisa
         private const double EURO = 1.05;
         private const double LIBRA = 1.30;
 
-        public static string Cambiar(TextBox entrada, ComboBox from, ComboBox to)
+        public static string Cambiar(int entrada, ComboBox from, ComboBox to)
         {
-            //DEFAULT 0
-            int valor;
-            int.TryParse(entrada.Text, out valor);
-
-            double resultado = Divisa(from.Text) / Divisa(to.Text) * valor;
-            return DateTime.Now.ToString() + " Importe " + valor + " " + from.Text + " - " + resultado.ToString("F2") + " " + to.Text;
-
+            double resultado = Divisa(from.Text) / Divisa(to.Text) * entrada;
+            return DateTime.Now.ToString() + " Importe " + entrada + " " + from.Text + " - " + resultado.ToString("F2") + " " + to.Text;
         }
         private static double Divisa(string divisa)
         {

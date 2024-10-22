@@ -25,9 +25,17 @@ namespace CambioDivisa
 
         private void Btn_Calcular_Click(object sender, RoutedEventArgs e)
         {
-            string log = (CambiarDivisa.Cambiar(TextBox_Entrada, ComboBox_From, ComboBox_To)).Trim();
-            LecturaEscritura.Escribir(log);
-            ListBox_Historico.Items.Add(log);
+            
+            if (int.TryParse(TextBox_Entrada.Text, out int entrada) && entrada>0)
+            {
+                string log = (CambiarDivisa.Cambiar(entrada, ComboBox_From, ComboBox_To)).Trim();
+                LecturaEscritura.Escribir(log);
+                ListBox_Historico.Items.Add(log);
+            }
+            else
+            {
+                MessageBox.Show("No has introducido un numero valido");
+            }
         }
 
         private void Click_IntercambioDivisas(object sender, MouseButtonEventArgs e)
@@ -36,6 +44,22 @@ namespace CambioDivisa
             aux = ComboBox_From.SelectedIndex;
             ComboBox_From.SelectedIndex = ComboBox_To.SelectedIndex;
             ComboBox_To.SelectedIndex = aux;
+        }
+
+        private void TextBox_Entrada_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(TextBox_Entrada.Text, out int numero) && numero>0)
+            {
+                TextBox_Entrada.Background = new SolidColorBrush(Colors.White);
+                Label_error.Visibility = Visibility.Hidden;
+                Label_flechita.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                TextBox_Entrada.Background = new SolidColorBrush(Color.FromRgb(255,50,50));
+                Label_error.Visibility = Visibility.Visible;
+                Label_flechita.Visibility = Visibility.Visible;
+            }
         }
     }
 }
