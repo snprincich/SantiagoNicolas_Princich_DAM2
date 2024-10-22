@@ -26,7 +26,7 @@ namespace CambioDivisa
         private void Btn_Calcular_Click(object sender, RoutedEventArgs e)
         {
             
-            if (int.TryParse(TextBox_Entrada.Text, out int entrada) && entrada>0)
+            if (double.TryParse(TextBox_Entrada.Text, out double entrada) && entrada>0)
             {
                 string log = (CambiarDivisa.Cambiar(entrada, ComboBox_From, ComboBox_To)).Trim();
                 LecturaEscritura.Escribir(log);
@@ -48,7 +48,7 @@ namespace CambioDivisa
 
         private void TextBox_Entrada_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (int.TryParse(TextBox_Entrada.Text, out int numero) && numero>0)
+            if (double.TryParse(TextBox_Entrada.Text, out double numero) && numero>0)
             {
                 TextBox_Entrada.Background = new SolidColorBrush(Colors.White);
                 Label_error.Visibility = Visibility.Hidden;
