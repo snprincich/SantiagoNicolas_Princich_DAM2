@@ -1,0 +1,40 @@
+﻿using System.Configuration;
+using System.Data;
+using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using WPF_Primo.ViewModel;
+
+namespace WPF_Primo
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            Services = ConfigureServices();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var mainWindow = Current.Services.GetService<MainWindow>();
+            mainWindow?.Show();
+        }
+        public new static App Current => (App)Application.Current;
+        public IServiceProvider Services { get; }
+
+        private static IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddTransient<MainWindow>();
+            services.AddTransient<MainViewModel>();
+            services.AddTransient<CalcPrimoViewModel>();
+            //services.AddTransient<HistoricoCambioDivisaViewModel>();
+            //services.AddSingleton<ICambioDivisaService, CambioDivisaService>();
+            //services.AddSingleton<IHistoricoDivisaProvider, HistoricoDivisaService>();
+            return services.BuildServiceProvider();
+        }
+    }
+
+}

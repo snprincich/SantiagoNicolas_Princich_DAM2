@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nonograma", "Nonograma\Nono
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_FirstAPP", "WPF_FirstAPP\WPF_FirstAPP.csproj", "{CC9A8DFF-8401-41D5-928C-265D012F1F02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambioDivisa", "CambioDivisa\CambioDivisa.csproj", "{82418755-43FB-4F16-A37C-FD221FF4582F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CambioDivisa", "CambioDivisa\CambioDivisa.csproj", "{82418755-43FB-4F16-A37C-FD221FF4582F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjemploProfesor", "EjemploProfesor\EjemploProfesor.csproj", "{A8557D1B-1B95-4A7A-829D-D7BCA2A590AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Primo", "WPF_Primo\WPF_Primo.csproj", "{5956BC75-6DE4-4E2B-81DE-8942D96CF73D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{82418755-43FB-4F16-A37C-FD221FF4582F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82418755-43FB-4F16-A37C-FD221FF4582F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82418755-43FB-4F16-A37C-FD221FF4582F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8557D1B-1B95-4A7A-829D-D7BCA2A590AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8557D1B-1B95-4A7A-829D-D7BCA2A590AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8557D1B-1B95-4A7A-829D-D7BCA2A590AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8557D1B-1B95-4A7A-829D-D7BCA2A590AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5956BC75-6DE4-4E2B-81DE-8942D96CF73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5956BC75-6DE4-4E2B-81DE-8942D96CF73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5956BC75-6DE4-4E2B-81DE-8942D96CF73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5956BC75-6DE4-4E2B-81DE-8942D96CF73D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

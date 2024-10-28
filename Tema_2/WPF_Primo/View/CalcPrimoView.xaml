@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WPF_Primo.View.CalcPrimoView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Primo.View"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="450"
+        Title="Calculadora número primo" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=viewModel:CalcPrimoViewModel}"
+        Background="White"
+             >
+    <Grid>
+        <TextBox x:Name="txtNumero" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,40,0,0" />
+
+    </Grid>
+</UserControl>

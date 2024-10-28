@@ -11,6 +11,12 @@ namespace CambioDivisa
 {
     internal class LecturaEscritura
     {
+        //private const string RUTA;
+        //public LecturaEscritura(string ruta)
+        //{
+            //this.RUTA = ruta;
+        //}
+
         public static void Escribir(string texto)
         {
             StreamWriter escribir = new StreamWriter("log_CambioDivisa.txt",true);

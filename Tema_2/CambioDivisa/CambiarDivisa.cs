@@ -18,7 +18,7 @@ namespace CambioDivisa
         private const string STRING_LIBRAS = "Libras";
 
         public static string Cambiar(double entrada, ComboBox from, ComboBox to)
-        {
+        {            
             double resultado = Divisa(from.Text) / Divisa(to.Text) * entrada;
             return DateTime.Now.ToString() + " Importe " + entrada.ToString("F2") + " " + from.Text + " - " + resultado.ToString("F2") + " " + to.Text;
         }
