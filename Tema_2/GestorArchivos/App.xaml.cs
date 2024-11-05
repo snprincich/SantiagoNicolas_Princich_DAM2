@@ -1,4 +1,5 @@
 ﻿using GestorArchivos.Controls;
+using GestorArchivos.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
@@ -23,7 +24,8 @@ namespace GestorArchivos
         {
             base.OnStartup(e);
 
-
+            //var mainWindow = Current.Services.GetService<MainWindow>();
+            //mainWindow?.Show();
         }
 
         public new static App Current => (App)Application.Current;
@@ -34,7 +36,7 @@ namespace GestorArchivos
             services.AddTransient<MainWindow>();
             services.AddTransient<HeaderControl>();
             services.AddTransient<InfoControl>();
-
+            services.AddTransient<InfoViewModel>();
             return services.BuildServiceProvider();
         }
 
