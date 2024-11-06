@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace GestorArchivos.ViewModel
 {
-    public partial class InfoViewModel : ViewModelBase
+    public class FileViewModel : ViewModelBase
     {
-        public InfoViewModel()
-        {
-
-        }
+        public FileViewModel() { }
 
         public override Task LoadAsync()
         {
-            
             return base.LoadAsync();
         }
     }

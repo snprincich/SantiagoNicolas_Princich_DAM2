@@ -12,20 +12,20 @@ namespace GestorArchivos
     /// </summary>
     public partial class App : Application
     {
-        private IServiceProvider Services { get; set; }
+        public IServiceProvider Services { get; set; }
         public App()
         {
             Services = ConfigureServices();
-            var mainWindow = Current.Services.GetService<MainWindow>();
-            mainWindow?.Show();
+            // mainWindow = Current.Services.GetService<MainWindow>();
+            //inWindow?.Show();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            //var mainWindow = Current.Services.GetService<MainWindow>();
-            //mainWindow?.Show();
+            var mainWindow = Current.Services.GetService<MainWindow>();
+            mainWindow?.Show();
         }
 
         public new static App Current => (App)Application.Current;
@@ -36,7 +36,9 @@ namespace GestorArchivos
             services.AddTransient<MainWindow>();
             services.AddTransient<HeaderControl>();
             services.AddTransient<InfoControl>();
+            services.AddSingleton<MainViewModel>();
             services.AddTransient<InfoViewModel>();
+            services.AddTransient<FileViewModel>();
             return services.BuildServiceProvider();
         }
 

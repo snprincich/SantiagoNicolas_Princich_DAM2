@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GestorArchivos.Controls"
+        xmlns:local="clr-namespace:GestorArchivos.Controls" 
+        xmlns:viewmodel="clr-namespace:GestorArchivos.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:HeaderControlViewModel}"
              Background="#FFDDDDDD"
         mc:Ignorable="d">
     <Grid>
@@ -16,7 +18,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="Info_Button" Content="Info"  Grid.Column="0"/>
-        <Button x:Name="File_Button" Content="File"  Grid.Column="1"/>
+        <Button x:Name="Info_Button" Content="Info"  Grid.Column="0" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding InfoViewModel}"/>
+        <Button x:Name="File_Button" Content="File"  Grid.Column="1" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding InfoViewModel}"/>
+        
     </Grid>
 </UserControl>

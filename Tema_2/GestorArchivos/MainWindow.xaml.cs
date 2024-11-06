@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GestorArchivos.ViewModel;
 
 namespace GestorArchivos
 {
@@ -16,9 +17,19 @@ namespace GestorArchivos
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainViewModel _mainWindow;
+        public MainWindow(MainViewModel mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+            DataContext = _mainWindow;
+            Loaded += MainWindow_Loaded;
+        }
+
+
+        private async void MainWindow_Loaded(Object sender, RoutedEventArgs e)
+        {
+            await _mainWindow.LoadAsync();
         }
     }
 }
