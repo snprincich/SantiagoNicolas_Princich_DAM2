@@ -3,11 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GestorArchivos.Controls" 
-        xmlns:viewmodel="clr-namespace:GestorArchivos.ViewModel" 
-        d:DataContext="{d:DesignInstance Type=viewmodel:HeaderControlViewModel}"
+          xmlns:view="clr-namespace:GestorArchivos.Views"
+          xmlns:viewmodel="clr-namespace:GestorArchivos.ViewModel"
+             
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
              Background="#FFDDDDDD"
         mc:Ignorable="d">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:InfoViewModel}">
+            <view:InfoView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:FileViewModel}">
+            <view:FileView/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -18,8 +29,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="Info_Button" Content="Info"  Grid.Column="0" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding InfoViewModel}"/>
-        <Button x:Name="File_Button" Content="File"  Grid.Column="1" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding InfoViewModel}"/>
+        <Button x:Name="Info_Button" Content="Info"  Grid.Column="0" Command="{Binding SelectViewModel1Command}" CommandParameter="{Binding InfoViewModel}"/>
+        <Button x:Name="File_Button" Content="File"  Grid.Column="1" Command="{Binding SelectViewModel2Command}" CommandParameter="{Binding FileViewModel}"/>
         
     </Grid>
 </UserControl>

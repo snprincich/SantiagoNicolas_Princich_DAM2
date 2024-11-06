@@ -23,7 +23,7 @@ namespace GestorArchivos.ViewModel
         {
             
             MainViewModel mainViewModel = App.Current.Services.GetService<MainViewModel>();
-            mainViewModel.SelectedViewModel = mainViewModel.FileViewModel;
+            mainViewModel.SelectedViewModel = mainViewModel.InfoViewModel;
             await LoadAsync();
         }
     }
