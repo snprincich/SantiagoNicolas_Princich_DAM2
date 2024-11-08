@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GestorArchivos.Controls;
 using GestorArchivos.ViewModel;
 
 namespace GestorArchivos
@@ -21,6 +22,7 @@ namespace GestorArchivos
         public MainWindow(MainViewModel mainWindow)
         {
             InitializeComponent();
+            //HeaderContainer.Content = headerControl;
             _mainWindow = mainWindow;
             DataContext = _mainWindow;
             Loaded += MainWindow_Loaded;

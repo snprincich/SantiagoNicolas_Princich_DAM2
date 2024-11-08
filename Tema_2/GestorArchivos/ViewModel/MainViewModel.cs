@@ -12,9 +12,11 @@ namespace GestorArchivos.ViewModel
         private ViewModelBase? _selectedViewModel;   
         public InfoViewModel? InfoViewModel { get; }
         public FileViewModel? FileViewModel {get;} 
-        public MainViewModel(InfoViewModel infoViewModel, FileViewModel fileViewModel)
+        public InicioViewModel? InicioViewModel { get; }
+
+        public MainViewModel(InicioViewModel inicioViewModel, InfoViewModel infoViewModel, FileViewModel fileViewModel)
         {
-            _selectedViewModel = fileViewModel;
+            _selectedViewModel = inicioViewModel;
             InfoViewModel = infoViewModel;
             FileViewModel = fileViewModel;
         }
@@ -31,20 +33,14 @@ namespace GestorArchivos.ViewModel
         }
 
         
-        [RelayCommand]
-        private async Task SelectViewModel(object? parameter)
-        {
-            _selectedViewModel = parameter as ViewModelBase;
-            SelectedViewModel = parameter as ViewModelBase;
-            await LoadAsync();
-        }
+
         
 
         public override async Task LoadAsync()
         {
-            if (_selectedViewModel != null)
+            if (SelectedViewModel != null)
             {
-                await _selectedViewModel.LoadAsync();
+                await SelectedViewModel.LoadAsync();
             }
         }
     }

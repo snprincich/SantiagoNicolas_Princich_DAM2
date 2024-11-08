@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GestorArchivos.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,14 @@ namespace GestorArchivos.Controls
     /// </summary>
     public partial class HeaderControl : UserControl
     {
-        public HeaderControl()
+
+        public HeaderControl(HeaderControlViewModel headerControlViewModel)
         {
             InitializeComponent();
+            DataContext = headerControlViewModel;
         }
+
+
+
     }
 }

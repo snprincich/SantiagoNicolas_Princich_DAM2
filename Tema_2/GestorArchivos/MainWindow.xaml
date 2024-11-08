@@ -19,16 +19,13 @@
         <DataTemplate DataType="{x:Type viewmodel:FileViewModel}">
             <view:FileView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:InicioViewModel}">
+            <view:FileView/>
+        </DataTemplate>
     </Window.Resources>
-    
+
     <Grid>
-        <Grid.RowDefinitions >
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Controls:HeaderControl Grid.Row="0"/>
         
-        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
-        <!--<Controls:InfoControl Grid.Row="1"/>-->
+        <ContentControl Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>

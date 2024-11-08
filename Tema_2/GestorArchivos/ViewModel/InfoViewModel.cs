@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GestorArchivos.ViewModel
+﻿namespace GestorArchivos.ViewModel
 {
     public partial class InfoViewModel : ViewModelBase
     {
