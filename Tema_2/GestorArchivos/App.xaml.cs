@@ -1,4 +1,5 @@
 ﻿using GestorArchivos.Controls;
+using GestorArchivos.DataContext;
 using GestorArchivos.ViewModel;
 using GestorArchivos.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,14 +34,15 @@ namespace GestorArchivos
         {
             var services = new ServiceCollection();
             services.AddTransient<MainWindow>();
-            services.AddTransient<InfoControl>();
+            services.AddSingleton<InfoControl>();
             services.AddSingleton<MainViewModel>();
             services.AddTransient<InfoViewModel>();
             services.AddTransient<FileViewModel>();
             services.AddTransient<HeaderControl>();
             services.AddTransient<InicioViewModel>();
             services.AddTransient<InicioView>();
-            services.AddTransient<HeaderControlViewModel>();
+            services.AddSingleton<HeaderControlViewModel>();
+            services.AddSingleton<HeaderControlContext>();
             return services.BuildServiceProvider();
         }
 

@@ -1,4 +1,5 @@
-﻿using GestorArchivos.ViewModel;
+﻿using GestorArchivos.DataContext;
+using GestorArchivos.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,14 @@ namespace GestorArchivos.Controls
         public HeaderControl()
         {
             InitializeComponent();
-
+            DataContext = new
+            {
+                mainViewModel = App.Current.Services.GetService<MainViewModel>(),
+                headerControlViewModel = App.Current.Services.GetService<HeaderControlViewModel>()
+            };
         }
 
+            
 
 
     }

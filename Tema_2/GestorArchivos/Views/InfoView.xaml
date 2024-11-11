@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestorArchivos.Views"
         xmlns:viewmodel="clr-namespace:GestorArchivos.ViewModel"
+              xmlns:controls="clr-namespace:GestorArchivos.Controls"
              d:DataContext="{d:DesignInstance Type=viewmodel:InfoViewModel}"
              Background="White"
         mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
         >
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:HeaderControlViewModel}">
+            <controls:HeaderControl/>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
-        <Image x:Name="IES_Comercio">
-            <Image.Source>
-                <BitmapImage UriSource="/Resources/IES_Comercio.png" />
-            </Image.Source>
-        </Image>
-        <Label x:Name="Nombre" Content="Santiago Nicolas Princich 2ºDAM" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" Name="Header" Content="{Binding SelectedHeader}" />
     </Grid>
 </UserControl>

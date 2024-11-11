@@ -3,23 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:datacontext="clr-namespace:GestorArchivos.DataContext"
         Background="#FFDDDDDD"
         mc:Ignorable="d">
 
-
-    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="Info_Button" Content="Info"  Grid.Column="0" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding InfoViewModel}"/>
-        <Button x:Name="File_Button" Content="File"  Grid.Column="1" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding FileViewModel}"/>
-        
+        <Menu Grid.Row="0" Background="#FFDDDDDD"  VerticalAlignment="Center" >
+            <MenuItem Header="Info" Command="{Binding Path=headerControlViewModel.SelectViewModelCommand}" CommandParameter="{Binding Path=mainViewModel.InfoViewModel}"/>
+            <MenuItem Header="File">
+                <MenuItem Header="Abrir" Command="{Binding Path=headerControlViewModel.SelectViewModelCommand}" CommandParameter="{Binding Path=mainViewModel.FileViewModel}"/>
+                <MenuItem Header="Guardar" />
+                <MenuItem Header="Cerrar" />
+            </MenuItem>
+        </Menu>
     </Grid>
 </UserControl>

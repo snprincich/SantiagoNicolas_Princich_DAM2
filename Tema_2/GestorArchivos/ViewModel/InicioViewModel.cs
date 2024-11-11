@@ -18,7 +18,6 @@ namespace GestorArchivos.ViewModel
             set
             {
                 SetProperty(ref _selectedHeader, value);
-
             }
         }
         public override Task LoadAsync()

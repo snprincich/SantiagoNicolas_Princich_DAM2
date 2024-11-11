@@ -10,8 +10,8 @@ namespace GestorArchivos.ViewModel
 {
     public partial class HeaderControlViewModel : ViewModelBase
     {
+        public HeaderControlViewModel() {}
 
-        public HeaderControlViewModel() { }
         public override Task LoadAsync()
         {
             return base.LoadAsync();
@@ -21,10 +21,8 @@ namespace GestorArchivos.ViewModel
         [RelayCommand]
         private async Task SelectViewModel(object? parameter)
         {
-            
             MainViewModel mainViewModel = App.Current.Services.GetService<MainViewModel>();
-            //mainViewModel.SelectedViewModel = parameter as ViewModelBase;
-            mainViewModel.SelectedViewModel = App.Current.Services.GetService<InicioViewModel>();
+            mainViewModel.SelectedViewModel = parameter as ViewModelBase;
             await LoadAsync();
         }
     }
