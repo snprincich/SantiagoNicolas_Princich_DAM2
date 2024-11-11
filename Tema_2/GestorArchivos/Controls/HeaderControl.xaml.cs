@@ -22,10 +22,10 @@ namespace GestorArchivos.Controls
     public partial class HeaderControl : UserControl
     {
 
-        public HeaderControl(HeaderControlViewModel headerControlViewModel)
+        public HeaderControl()
         {
             InitializeComponent();
-            DataContext = headerControlViewModel;
+
         }
 
 

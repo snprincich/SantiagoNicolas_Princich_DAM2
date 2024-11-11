@@ -4,10 +4,10 @@ namespace GestorArchivos.Views
 {
     public partial class InicioView : UserControl
     {
-        public InicioView(InicioViewModel inicioViewModel)
+        public InicioView()
         {
             InitializeComponent();
-            DataContext = inicioViewModel;
+            //DataContext = inicioViewModel;
         }
     }
 }

@@ -17,8 +17,6 @@ namespace GestorArchivos
         public App()
         {
             Services = ConfigureServices();
-            // mainWindow = Current.Services.GetService<MainWindow>();
-            //inWindow?.Show();
         }
 
         protected override void OnStartup(StartupEventArgs e)

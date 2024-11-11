@@ -12,6 +12,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         >
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodel:InfoViewModel}">
             <view:InfoView/>
@@ -20,12 +21,11 @@
             <view:FileView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodel:InicioViewModel}">
-            <view:FileView/>
+            <view:InicioView/>
         </DataTemplate>
     </Window.Resources>
 
     <Grid>
-        
-        <ContentControl Content="{Binding SelectedViewModel}"/>
+        <ContentControl  Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>
