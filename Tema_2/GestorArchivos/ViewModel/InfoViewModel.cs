@@ -6,7 +6,6 @@
         public HeaderControlViewModel HeaderControl { get; }
         public InfoViewModel(HeaderControlViewModel headerControl)
         {
-
             _selectedHeader = headerControl;
             HeaderControl = headerControl;
         }
