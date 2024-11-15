@@ -63,6 +63,26 @@ namespace GestorArchivos {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
+        internal static byte[] fileTxt {
+            get {
+                object obj = ResourceManager.GetObject("fileTxt", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
         internal static byte[] IES_Comercio {
             get {
                 object obj = ResourceManager.GetObject("IES_Comercio", resourceCulture);

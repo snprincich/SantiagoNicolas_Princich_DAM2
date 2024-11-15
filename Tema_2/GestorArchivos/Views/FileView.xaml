@@ -24,5 +24,7 @@
         </Grid.RowDefinitions>
 
         <ContentControl Grid.Row="0" Content="{Binding SelectedHeader}" />
+
+
     </Grid>
 </UserControl>

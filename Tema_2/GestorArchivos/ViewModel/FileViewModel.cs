@@ -15,8 +15,9 @@ namespace GestorArchivos.ViewModel
         public FileViewModel(HeaderControlViewModel headerControlViewModel, GestorFicheros gestorCarpetas) { 
             _selectedHeader = headerControlViewModel;
             HeaderControl = headerControlViewModel;
-            gestorCarpetas = gestorCarpetas;
+            this.gestorCarpetas = gestorCarpetas;
         }
+
 
 
         public ViewModelBase? SelectedHeader

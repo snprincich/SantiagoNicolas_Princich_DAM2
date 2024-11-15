@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\fileTxt.png" />
+    <None Remove="Resources\folder.png" />
     <None Remove="Resources\IES_Comercio.png" />
   </ItemGroup>
 
@@ -33,6 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\fileTxt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\folder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\IES_Comercio.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
