@@ -1,5 +1,4 @@
-﻿using GestorArchivos.Services;
-using GestorArchivos.ViewModel;
+﻿using GestorArchivos.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -18,13 +17,15 @@ using System.Windows.Shapes;
 namespace GestorArchivos.Views
 {
     /// <summary>
-    /// Lógica de interacción para FileView.xaml
+    /// Lógica de interacción para CrearView.xaml
     /// </summary>
-    public partial class FileView : UserControl
+    public partial class CrearView : Window
     {
-        public FileView()
+        public string ruta;
+        public CrearView()
         {
             InitializeComponent();
+            DataContext = App.Current.Services.GetService<CrearViewModel>();
         }
     }
 }

@@ -22,6 +22,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ContentControl Name="Header" Content="{Binding SelectedHeader}" />
-        <TextBox Grid.Row="1" x:Name="TextoBox_Inicio" Text="Prueba" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <TextBox Grid.Row="1" x:Name="TextoBox_Inicio" TextWrapping="Wrap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
     </Grid>
 </UserControl>

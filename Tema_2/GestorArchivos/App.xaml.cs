@@ -33,17 +33,17 @@ namespace GestorArchivos
         private static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
-            services.AddTransient<MainWindow>();
+            services.AddSingleton<MainWindow>();
             services.AddSingleton<InfoControl>();
             services.AddSingleton<MainViewModel>();
-            services.AddTransient<InfoViewModel>();
-            services.AddTransient<FileViewModel>();
-            services.AddTransient<HeaderControl>();
+            services.AddSingleton<InfoViewModel>();
+            services.AddSingleton<FileViewModel>();
+            services.AddSingleton<HeaderControl>();
             services.AddTransient<InicioViewModel>();
-            services.AddTransient<InicioView>();
             services.AddSingleton<HeaderControlViewModel>();
             services.AddSingleton<GestorFicheros>();
-            //services.AddSingleton<HeaderControlContext>();
+            services.AddTransient<CrearView>();
+            services.AddTransient<CrearViewModel>();
             return services.BuildServiceProvider();
         }
 

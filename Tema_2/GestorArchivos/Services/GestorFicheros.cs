@@ -11,43 +11,51 @@ namespace GestorArchivos.Services
 {
     public class GestorFicheros
     {
-        private const string RUTA = "FILES";
+        private const string FICHERO = "\\Resources\\fileTxt.png";
+        private const string CARPETA = "\\Resources\\folder.png";
 
-        public GestorFicheros()
-        {
-            onStart();
-            getFicheros(RUTA);
-        }
 
-        private void onStart()
+
+        public  void Start(string ruta)
         {
-            if (!Directory.Exists(RUTA))
+            if (!Directory.Exists(ruta))
             {
-                Directory.CreateDirectory(RUTA);
-                File.Create(RUTA+"/default1.txt");
-                File.Create(RUTA + "/default2.txt");
-                Directory.CreateDirectory(RUTA + "/carpeta_default");
+                Directory.CreateDirectory(ruta);
+                File.Create(ruta+"/default1.txt");
+                File.Create(ruta + "/default2.txt");
+                Directory.CreateDirectory(ruta + "/carpeta_default");
             }
         }
 
-        private List<KeyValuePair<string, bool>> getFicheros(string ruta)
+        public void Crear(string nombre, string tipo, string ruta)
         {
-            List<KeyValuePair<string, bool>> ficheros = new List<KeyValuePair<string, bool>>();
-
-            
+            switch (tipo)
+            {
+                case "Crear Directorio":
+                    Directory.CreateDirectory(ruta+"/"+nombre);
+                    break;
+                case "Crear Fichero":
+                    File.Create(ruta+"/"+nombre+".txt");
+                    break;
+                default:
+                    break;
+            }
+        }
+        public  Collection<Fichero> getFicheros(string ruta)
+        {
+            Collection<Fichero> ficheros = new Collection<Fichero>();
 
             string[] dir = Directory.GetFileSystemEntries(ruta);
             foreach (string ver in dir) {
                 if (FileAttributes.Directory == File.GetAttributes(ver))
                 {
-                    ficheros.Add(new KeyValuePair<string, bool>(ver, true));
+                    ficheros.Add(new Fichero(ver.Split('\\')[1],ver,CARPETA));
                 }
                 else
                 {
-                    ficheros.Add(new KeyValuePair<string, bool>(ver, false));
+                    ficheros.Add(new Fichero(ver.Split('\\')[1], ver, FICHERO));
                 }
             }
-
 
             return ficheros;
         }
