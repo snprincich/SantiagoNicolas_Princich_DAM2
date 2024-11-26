@@ -17,9 +17,19 @@ namespace GestorArchivos.ViewModel
     public partial class CrearViewModel : ViewModelBase
     {
         private GestorFicheros _gestorFicheros;
+        private CrearView _crearView;
         public CrearViewModel(GestorFicheros gestorFicheros) 
         {
             this._gestorFicheros = gestorFicheros;
+        }
+
+        public CrearView? SelectedView
+        {
+            get => _crearView;
+            set
+            {
+                SetProperty(ref _crearView, value);
+            }
         }
 
         [ObservableProperty]
@@ -37,9 +47,9 @@ namespace GestorArchivos.ViewModel
         }
 
         [RelayCommand]
-        private void Cancel(Window vista)
+        private void Cancel()
         {
-            vista.Close(); 
+            _crearView.Close();
         }
 
         [ObservableProperty]

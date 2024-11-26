@@ -57,6 +57,10 @@ namespace GestorArchivos.ViewModel
         private void ViewCrear(string tipo)
         {
             var view = App.Current.Services.GetService<CrearView>();
+            var viewModel = App.Current.Services.GetService<CrearViewModel>();
+            viewModel.SelectedView = view;
+            view.DataContext = viewModel;
+
             view.TituloLabel.Content = tipo;
             view.Ruta.Content = RUTA;
             view.Show();
