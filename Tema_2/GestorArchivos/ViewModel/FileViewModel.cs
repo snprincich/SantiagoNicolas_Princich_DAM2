@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using GestorArchivos.Services;
 using GestorArchivos.Views;
+using GestorArchivos.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GestorArchivos.ViewModel
@@ -19,9 +16,9 @@ namespace GestorArchivos.ViewModel
         private ViewModelBase? _selectedHeader;
         public HeaderControlViewModel HeaderControl { get; }
 
-        private GestorFicheros _gestorFicheros;
+        private IGestorFicheros _gestorFicheros;
         public ObservableCollection<Fichero> Ficheros { get; set; }
-        public FileViewModel(HeaderControlViewModel headerControlViewModel, GestorFicheros gestorFicheros) { 
+        public FileViewModel(HeaderControlViewModel headerControlViewModel, IGestorFicheros gestorFicheros) { 
             _selectedHeader = headerControlViewModel;
             HeaderControl = headerControlViewModel;
 
@@ -59,10 +56,9 @@ namespace GestorArchivos.ViewModel
             var view = App.Current.Services.GetService<CrearView>();
             var viewModel = App.Current.Services.GetService<CrearViewModel>();
             viewModel.SelectedView = view;
+            viewModel.Tipo = tipo;
+            viewModel.Ruta = RUTA;
             view.DataContext = viewModel;
-
-            view.TituloLabel.Content = tipo;
-            view.Ruta.Content = RUTA;
             view.Show();
             view.Closed += View_Closed;
         }
@@ -74,7 +70,7 @@ namespace GestorArchivos.ViewModel
 
         public void CargarFicheros(string ruta)
         {
-            var fich = _gestorFicheros.getFicheros(ruta);
+            var fich = _gestorFicheros.GetFicheros(ruta);
             if (Ficheros != null) Ficheros.Clear();
             else Ficheros = new ObservableCollection<Fichero>();
             foreach (var ver in fich)

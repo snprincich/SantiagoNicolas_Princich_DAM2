@@ -1,22 +1,18 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GestorArchivos.Interfaces;
+
 
 namespace GestorArchivos.Services
 {
-    public class GestorFicheros
+    public class GestorFicheros : IGestorFicheros
     {
         private const string FICHERO = "\\Resources\\fileTxt.png";
         private const string CARPETA = "\\Resources\\folder.png";
 
 
 
-        public  void Start(string ruta)
+        public void Start(string ruta)
         {
             if (!Directory.Exists(ruta))
             {
@@ -41,7 +37,7 @@ namespace GestorArchivos.Services
                     break;
             }
         }
-        public  Collection<Fichero> getFicheros(string ruta)
+        public  Collection<Fichero> GetFicheros(string ruta)
         {
             Collection<Fichero> ficheros = new Collection<Fichero>();
 

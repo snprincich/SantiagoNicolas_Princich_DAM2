@@ -25,7 +25,6 @@ namespace GestorArchivos.Views
         public CrearView()
         {
             InitializeComponent();
-            DataContext = App.Current.Services.GetService<CrearViewModel>();
         }
     }
 }

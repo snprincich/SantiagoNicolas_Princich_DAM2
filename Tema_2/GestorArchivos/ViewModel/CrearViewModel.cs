@@ -1,24 +1,18 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GestorArchivos.Interfaces;
 using GestorArchivos.Services;
 using GestorArchivos.Views;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GestorArchivos.ViewModel
 {
     public partial class CrearViewModel : ViewModelBase
     {
-        private GestorFicheros _gestorFicheros;
-        private CrearView _crearView;
-        public CrearViewModel(GestorFicheros gestorFicheros) 
+        private IGestorFicheros _gestorFicheros;
+        private CrearView? _crearView;
+        public CrearViewModel(IGestorFicheros gestorFicheros) 
         {
             this._gestorFicheros = gestorFicheros;
         }
@@ -34,16 +28,16 @@ namespace GestorArchivos.ViewModel
 
         [ObservableProperty]
         private string _nombre = string.Empty;
-
+        [ObservableProperty]
+        private string _ruta = string.Empty;
+        [ObservableProperty]
+        private string tipo = string.Empty;
 
         [RelayCommand]
-        private void Crear(Window vista)
+        private void Crear()
         {
-            CrearView crearView = (CrearView)vista;
-            string? ruta = crearView.Ruta.Content.ToString();
-            string? tipo = ((CrearView)vista).TituloLabel.Content.ToString();
-            _gestorFicheros.Crear(Nombre,tipo, ruta);
-            vista.Close();
+            _gestorFicheros.Crear(Nombre,Tipo, Ruta);
+            _crearView.Close();
         }
 
         [RelayCommand]

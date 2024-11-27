@@ -12,13 +12,10 @@
     <Grid>
 
         <StackPanel  VerticalAlignment="Center">
-            <Label x:Name="TituloLabel" Content="" FontSize="16" Margin="10" HorizontalAlignment="Center"/>
+            <Label x:Name="TituloLabel" Content="{Binding Tipo}" FontSize="16" Margin="10" HorizontalAlignment="Center"/>
             <TextBox x:Name="NombreTextBox" Text="{Binding Nombre, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10" />
 
-            <Label x:Name="Ruta" Content="" Visibility="Hidden"/>
-            
-             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button x:Name="Crear" Content="Crear" Width="80" Margin="5"  Command="{Binding CrearCommand}" IsEnabled="{Binding PuedeCrear}" CommandParameter="{Binding ElementName=CrearViewWindow}"/>
                 <Button Content="Cancelar" Width="80" Margin="5" Command="{Binding CancelCommand}" />
             </StackPanel>
