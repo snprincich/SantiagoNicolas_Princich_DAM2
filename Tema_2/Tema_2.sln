@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CambioDivisa", "CambioDivis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestorArchivos", "GestorArchivos\GestorArchivos.csproj", "{EDDE4914-E934-4D81-AF57-E279B16A751F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApi", "FirstApi\FirstApi.csproj", "{C25370D2-956A-4EDF-AB92-D90118FC09C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApi", "FirstApi\FirstApi.csproj", "{C25370D2-956A-4EDF-AB92-D90118FC09C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeRogue", "PokeRogue\PokeRogue.csproj", "{662A5C10-2E1B-4DD5-82CF-C3742CEFD4EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C25370D2-956A-4EDF-AB92-D90118FC09C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C25370D2-956A-4EDF-AB92-D90118FC09C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C25370D2-956A-4EDF-AB92-D90118FC09C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662A5C10-2E1B-4DD5-82CF-C3742CEFD4EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662A5C10-2E1B-4DD5-82CF-C3742CEFD4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662A5C10-2E1B-4DD5-82CF-C3742CEFD4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662A5C10-2E1B-4DD5-82CF-C3742CEFD4EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
