@@ -3,10 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokeRogue"
+        xmlns:local="clr-namespace:PokeRogue" 
+        xmlns:viewmodel="clr-namespace:PokeRogue.ViewModel" 
+        xmlns:view="clr-namespace:PokeRogue.View"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:BattleViewModel}">
+            <view:BattleView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:TeamViewModel}">
+            <view:TeamView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:HistoricViewModel}">
+            <view:HistoricView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:ImportViewModel}">
+            <view:ImportView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" HorizontalAlignment="Center" Background="#FFD9E9F9" >
+            <MenuItem Header="Battle" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding BattleViewModel}"/>
+            <MenuItem Header="Team" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding TeamViewModel}"/>
+            <MenuItem Header="Historic" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding HistoricViewModel}"/>
+            <MenuItem Header="Import" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding ImportViewModel}"/>
+        </Menu>
+        <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
     </Grid>
 </Window>
