@@ -13,11 +13,11 @@ namespace PokeRogue.ViewModel
     {
         private ViewModelBase? _selectedViewModel;
 
-        public BattleViewModel? BattleViewModel;
+        public BattleViewModel? BattleViewModel { get; }
 
-        public TeamViewModel? TeamViewModel;
-        public HistoricViewModel? HistoricViewModel;
-        public ImportViewModel? ImportViewModel;
+        public TeamViewModel? TeamViewModel { get; }
+        public HistoricViewModel? HistoricViewModel { get; }
+        public ImportViewModel? ImportViewModel { get; }
 
         public MainViewModel(BattleViewModel battleViewModel, TeamViewModel teamViewModel, HistoricViewModel historicViewModel, ImportViewModel importViewModel) { 
             _selectedViewModel = battleViewModel;

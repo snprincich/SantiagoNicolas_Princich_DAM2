@@ -4,8 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeRogue.View"
+        xmlns:control="clr-namespace:PokeRogue.Control"
+        d:DesignHeight="700" d:DesignWidth="1200"
+        d:Background="White"
         mc:Ignorable="d">
-    <Grid Background="Blue">
-        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="230"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Name="Escapar" Content="Escapar" Grid.Column="0"/>
+            <Button Name="Atacar" Content="Atacar" Grid.Column="1"/>
+            <Button x:Name="Capturar" Content="Capturar" Grid.Column="2"/>
+
+            <ProgressBar Minimum="0" Maximum="100" Value="100" Orientation="Horizontal" Height="25" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
+        </Grid>
+
+        <control:PokemonControl Grid.Row="0" />
+
     </Grid>
 </UserControl>
