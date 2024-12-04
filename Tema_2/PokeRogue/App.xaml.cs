@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PokeRogue.ViewModel;
+using PokeRogue.Services;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -39,6 +40,7 @@ namespace PokeRogue
             services.AddTransient<TeamViewModel>();
             services.AddTransient<HistoricViewModel>();
             services.AddTransient<ImportViewModel>();
+            services.AddSingleton<GenerarPokemonService>();
 
             return services.BuildServiceProvider();
         }

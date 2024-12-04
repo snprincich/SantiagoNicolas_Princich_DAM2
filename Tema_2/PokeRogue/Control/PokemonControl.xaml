@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Name="Ataque" Content="{Binding Ataque}" Grid.Column="0"/>
-        <Image Source="{Binding Imagen}" Margin="1" Stretch="Uniform" Grid.Column="1" />
+        <Image  Margin="1" Stretch="Uniform" Grid.Column="1" />
 
         <ProgressBar Name="Vida" Minimum="0" Maximum="{Binding VidaMax}" Value="{Binding VidaActual}"  Orientation="Horizontal" Grid.Column="2" Margin="38,200,78,468"/>
         <Label Name="VidaPorcentual" Content="{Binding VidaPorcentaje}" Grid.Column="2" Margin="158,203,196,466" />
