@@ -56,7 +56,7 @@ namespace PokeRogue.Services
                 PokeHp = pokemonDetalles?.ListaStats?.FirstOrDefault(x => x.Stat?.Name == Constantes.HP)?.Base_stat,
                 Captura = esShiny
             };
-
+            pokemon.PokeHpActual = pokemon.PokeHp;
             return pokemon;
         }
     }

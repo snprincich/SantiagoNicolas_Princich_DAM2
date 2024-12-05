@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PokeRogue.Models;
 using PokeRogue.Services;
 
@@ -7,20 +8,12 @@ namespace PokeRogue.ViewModel
     public partial class BattleViewModel : ViewModelBase
     {
         [ObservableProperty]
-        public int _ataque;
-        [ObservableProperty]
-        public int _vidaActual;
-        [ObservableProperty]
-        public int _vidaMax;
-        [ObservableProperty]
         public string _vidaPorcentaje;
-        [ObservableProperty]
-        public string _imagen;
-
 
         private GenerarPokemonService generarPokemonService;
 
-        private Pokemon pokemon;
+        [ObservableProperty]
+        public Pokemon _pokemon;
 
         public BattleViewModel(GenerarPokemonService generarPokemonService) 
         {
@@ -31,12 +24,20 @@ namespace PokeRogue.ViewModel
 
         private async Task GenerarPokemon()
         {
-           pokemon = await generarPokemonService.GetPokemon();
-           Ataque = (int)pokemon.PokeAtaque;
-           VidaMax = (int)pokemon.PokeHp;
-           VidaActual = VidaMax;
+           Pokemon = await generarPokemonService.GetPokemon();
            VidaPorcentaje = "100%";
-           Imagen = pokemon.ImagePath;
+        }
+
+        [RelayCommand]
+        public void Atacar(object? parameter)
+        {
+            Pokemon.PokeHpActual += -20;
+        }
+
+        [RelayCommand]
+        public void Escapar(object? parameter)
+        {
+            GenerarPokemon();
         }
     }
 }

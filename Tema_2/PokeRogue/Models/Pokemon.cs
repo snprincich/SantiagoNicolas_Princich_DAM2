@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeRogue.Models
 {
-    public class Pokemon
+    public partial class Pokemon : ObservableObject
     {
         
         public int? Id { get; set; }
@@ -19,6 +20,10 @@ namespace PokeRogue.Models
         public int? PokeAtaque { get; set; }
 
         public int? PokeHp { get; set; }
+
+        [ObservableProperty]
+        public int? _PokeHpActual;
+
         
     }
 }
