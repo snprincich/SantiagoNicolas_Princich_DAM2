@@ -2,22 +2,25 @@
 using CommunityToolkit.Mvvm.Input;
 using PokeRogue.Models;
 using PokeRogue.Services;
+using System.Windows;
 
 namespace PokeRogue.ViewModel
 {
     public partial class BattleViewModel : ViewModelBase
     {
-        [ObservableProperty]
-        public string _vidaPorcentaje;
-
+        
         private GenerarPokemonService generarPokemonService;
 
         [ObservableProperty]
         public Pokemon _pokemon;
 
-        public BattleViewModel(GenerarPokemonService generarPokemonService) 
+        [ObservableProperty]
+        public Jugador _jugador;
+
+        public BattleViewModel(GenerarPokemonService generarPokemonService, Jugador jugador) 
         {
             this.generarPokemonService = generarPokemonService;
+            this.Jugador = jugador;
             GenerarPokemon();
 
         }
@@ -25,19 +28,40 @@ namespace PokeRogue.ViewModel
         private async Task GenerarPokemon()
         {
            Pokemon = await generarPokemonService.GetPokemon();
-           VidaPorcentaje = "100%";
+           Pokemon.VidaPorcentaje = "100%";
         }
 
         [RelayCommand]
         public void Atacar(object? parameter)
         {
-            Pokemon.PokeHpActual += -20;
+            Pokemon.PokeHpActual -= Jugador.Atacar();
+            Pokemon.VidaPorcentaje = calcPorcentaje(Pokemon.PokeHpActual, Pokemon.PokeHp);
+
+            if (Pokemon.PokeHpActual > 0)
+            {
+                Jugador.VidaActual -= (int)Pokemon.PokeAtaque;
+                Jugador.VidaPorcentaje = calcPorcentaje(Jugador.VidaActual, Jugador.VidaMaxima);
+
+                if (Jugador.VidaActual <= 0)
+                {
+                    MessageBox.Show("GAME OVER");
+                }
+            }
+            else
+            {
+                GenerarPokemon();
+            }
         }
 
         [RelayCommand]
         public void Escapar(object? parameter)
         {
             GenerarPokemon();
+        }
+
+        private String calcPorcentaje(int? vidaActual, int? vidaMaxima)
+        {
+            return  (int)((double)vidaActual / (double)vidaMaxima * 100) + "%";
         }
     }
 }

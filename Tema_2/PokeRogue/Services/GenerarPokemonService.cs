@@ -17,7 +17,7 @@ namespace PokeRogue.Services
             Random rnd = new Random();
 
             //Obtener los detalles del Pokémon seleccionado de al Api de forma aleatoria
-            PokemonJson? pokemonDetalles = await HttpJsonClient<PokemonJson>.Get(Constantes.POKE_URL + rnd.Next(1, 501));
+            PokemonJson? pokemonDetalles = await HttpJsonClient<PokemonJson>.Get(Constantes.POKE_URL + rnd.Next(1, 101));
 
             if (pokemonDetalles == null)
             {

@@ -24,7 +24,7 @@
         <Label Name="Ataque" Content="{Binding Pokemon.PokeAtaque}" Grid.Column="0" Grid.Row="0"/>
         <Image Source="{Binding Pokemon.ImagePath}" Stretch="Uniform" Height="100" Grid.Column="1" Grid.Row="0"/>
         <ProgressBar Name="Vida" Minimum="0" Maximum="{Binding Pokemon.PokeHp}" Value="{Binding Pokemon.PokeHpActual}"  Orientation="Horizontal" Grid.Column="2"  Grid.Row="0" Height="25"/>
-        <Label Name="VidaPorcentual" Content="{Binding VidaPorcentaje}" Grid.Column="2"  Grid.Row="0"  Height="25"/>
+        <Label Name="PokemonVidaPorcentual" Content="{Binding Pokemon.VidaPorcentaje}" Grid.Column="2"  Grid.Row="0"  Height="25"/>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.RowDefinitions >
@@ -42,7 +42,8 @@
             <Button Name="Atacar" Content="Atacar" Grid.Column="1" Command="{Binding AtacarCommand}"/>
             <Button x:Name="Capturar" Content="Capturar" Grid.Column="2"/>
 
-            <ProgressBar Minimum="0" Maximum="100" Value="100" Orientation="Horizontal" Height="25" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
+            <ProgressBar Minimum="0" Maximum="{Binding Jugador.VidaMaxima}" Value="{Binding Jugador.VidaActual}" Orientation="Horizontal" Height="25" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
+            <Label Name="JugadorVidaPorcentual" Content="{Binding Pokemon.VidaPorcentaje}" Grid.Row="1" Grid.ColumnSpan="3"  Height="25"/>
         </Grid>
 
 

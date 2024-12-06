@@ -4,6 +4,7 @@ using PokeRogue.Services;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using PokeRogue.Models;
 
 namespace PokeRogue
 {
@@ -36,11 +37,12 @@ namespace PokeRogue
 
             //view viewModels
             services.AddTransient<MainViewModel>();
-            services.AddTransient<BattleViewModel>();
+            services.AddSingleton<BattleViewModel>();
             services.AddTransient<TeamViewModel>();
             services.AddTransient<HistoricViewModel>();
             services.AddTransient<ImportViewModel>();
             services.AddSingleton<GenerarPokemonService>();
+            services.AddSingleton<Jugador>();
 
             return services.BuildServiceProvider();
         }

@@ -22,8 +22,10 @@ namespace PokeRogue.Models
         public int? PokeHp { get; set; }
 
         [ObservableProperty]
-        public int? _PokeHpActual;
+        public int? _pokeHpActual;
 
-        
+        [ObservableProperty]
+        public string _vidaPorcentaje;
+
     }
 }
