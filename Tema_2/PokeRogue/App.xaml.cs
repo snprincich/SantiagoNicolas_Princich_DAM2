@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PokeRogue.ViewModel;
 using PokeRogue.Services;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 using PokeRogue.Models;
+using PokeRogue.Utils;
+using static PokeRogue.Interface.IFileService;
 
 namespace PokeRogue
 {
@@ -41,8 +41,17 @@ namespace PokeRogue
             services.AddTransient<TeamViewModel>();
             services.AddTransient<HistoricViewModel>();
             services.AddTransient<ImportViewModel>();
+
+            //services
             services.AddSingleton<GenerarPokemonService>();
+            services.AddSingleton<GestorAPIService>();
+            services.AddSingleton(typeof(IFileService<>), typeof(FileService<>));
+            services.AddTransient<ColorShinyService>();
+
+            //models
             services.AddSingleton<Jugador>();
+            services.AddTransient<Batalla>();
+
 
             return services.BuildServiceProvider();
         }

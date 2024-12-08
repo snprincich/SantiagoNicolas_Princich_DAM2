@@ -17,7 +17,7 @@ namespace PokeRogue.Services
             Random rnd = new Random();
 
             //Obtener los detalles del Pokémon seleccionado de al Api de forma aleatoria
-            PokemonJson? pokemonDetalles = await HttpJsonClient<PokemonJson>.Get(Constantes.POKE_URL + rnd.Next(1, 101));
+            PokemonDTO? pokemonDetalles = await HttpJsonClient<PokemonDTO>.Get(Constantes.POKE_URL + rnd.Next(1, 101));
 
             if (pokemonDetalles == null)
             {
@@ -34,7 +34,7 @@ namespace PokeRogue.Services
             return CrearPokemon(pokemonDetalles, esShiny);
         }
 
-        private static Pokemon CrearPokemon(PokemonJson? pokemonDetalles, bool esShiny)
+        private static Pokemon CrearPokemon(PokemonDTO? pokemonDetalles, bool esShiny)
         {
             //Crear un objeto Pokémon con la información obtenida
 
@@ -49,12 +49,12 @@ namespace PokeRogue.Services
 
             var pokemon = new Pokemon
             {
-                Id = pokemonDetalles?.Id,
+                Id = pokemonDetalles.Id,
                 ImagePath = pokemonImage,
                 PokemonName = pokemonDetalles?.Name,
                 PokeAtaque = pokemonDetalles?.ListaStats?.FirstOrDefault(x => x.Stat?.Name == Constantes.ATTACK)?.Base_stat,
                 PokeHp = pokemonDetalles?.ListaStats?.FirstOrDefault(x => x.Stat?.Name == Constantes.HP)?.Base_stat,
-                Captura = esShiny
+                Shiny = esShiny
             };
             pokemon.PokeHpActual = pokemon.PokeHp;
             return pokemon;

@@ -40,10 +40,10 @@
 
             <Button Name="Escapar" Content="Escapar" Grid.Column="0"  Command="{Binding EscaparCommand}"/>
             <Button Name="Atacar" Content="Atacar" Grid.Column="1" Command="{Binding AtacarCommand}"/>
-            <Button x:Name="Capturar" Content="Capturar" Grid.Column="2"/>
+            <Button x:Name="Capturar" Content="Capturar" Grid.Column="2" Command="{Binding CapturarCommand}"/>
 
             <ProgressBar Minimum="0" Maximum="{Binding Jugador.VidaMaxima}" Value="{Binding Jugador.VidaActual}" Orientation="Horizontal" Height="25" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3"/>
-            <Label Name="JugadorVidaPorcentual" Content="{Binding Pokemon.VidaPorcentaje}" Grid.Row="1" Grid.ColumnSpan="3"  Height="25"/>
+            <Label Name="JugadorVidaPorcentual" Content="{Binding Jugador.VidaPorcentaje}" Grid.Row="1" Grid.ColumnSpan="3"  Height="25"/>
         </Grid>
 
 

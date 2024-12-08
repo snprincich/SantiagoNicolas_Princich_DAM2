@@ -8,11 +8,12 @@ namespace PokeRogue.Utils
 {
         public static class Constantes
         {
+            public const int JUGADOR_HP_MAX = 1000;
             public const string POKE_URL = "https://pokeapi.co/api/v2/pokemon/";
             public const string ATTACK = "attack";
             public const string HP = "hp";
-        //public const string POKE_TYPE_URL = "https://pokeapi.co/api/v2/type/";
-        //public const int MAX_POKE_ITEMS = 15;
-        //public const string MISSINGNO_IMAGE_PATH = "../Resources/missingNo.jpg";
+            public const string MI_POKEAPI_URL = "https://localhost:32769/Pokemon/";
+            public const string MI_POKEAPI_LASTID = "LastID";
+            public const string JSON_FILTER = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
     }
 }

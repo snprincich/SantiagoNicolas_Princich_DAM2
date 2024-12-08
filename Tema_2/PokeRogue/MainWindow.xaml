@@ -25,7 +25,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
+    <Grid >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="25" ></RowDefinition>
@@ -33,10 +33,10 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" HorizontalAlignment="Center" Background="#FFD9E9F9" >
-            <MenuItem Header="Battle" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding BattleViewModel}"/>
-            <MenuItem Header="Team" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding TeamViewModel}"/>
-            <MenuItem Header="Historic" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding HistoricViewModel}"/>
-            <MenuItem Header="Import" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding ImportViewModel}"/>
+            <MenuItem Header="Battle" Command="{Binding SelectViewModelCommand}" FontWeight="{Binding BattleWeight}" CommandParameter="{Binding BattleViewModel}"/>
+            <MenuItem Header="Team" Command="{Binding SelectViewModelCommand}" FontWeight="{Binding TeamWeight}" CommandParameter="{Binding TeamViewModel}"/>
+            <MenuItem Header="Historic" Command="{Binding SelectViewModelCommand}" FontWeight="{Binding HistoricWeight}" CommandParameter="{Binding HistoricViewModel}"/>
+            <MenuItem Header="Import" Command="{Binding SelectViewModelCommand}" FontWeight="{Binding ImportWeight}" CommandParameter="{Binding ImportViewModel}"/>
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding SelectedViewModel}"/>
     </Grid>

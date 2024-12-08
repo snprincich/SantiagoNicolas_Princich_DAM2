@@ -24,7 +24,7 @@ namespace PokeRogue.Models
 
         public int Atacar()
         {
-            return new Random().Next(0, 40);
+            return new Random().Next(0, 41);
         }
     }
 }

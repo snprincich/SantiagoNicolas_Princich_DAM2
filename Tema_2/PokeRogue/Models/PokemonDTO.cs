@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace PokeRogue.Models
 {
     
-    public class PokemonJson
+    public class PokemonDTO
     {
         [JsonPropertyName("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [JsonPropertyName("name")]
         public string? Name { get; set; }
