@@ -3,10 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using PokeRogue.Utils;
-using static PokeRogue.Interface.IFileService;
 using System.Collections.ObjectModel;
 using PokeRogue.Models;
 using System.Windows;
+using PokeRogue.Interface;
 
 namespace PokeRogue.ViewModel
 {

@@ -7,7 +7,6 @@ using PokeRogue.Models;
 using PokeRogue.Services;
 using PokeRogue.Utils;
 using System.Collections.ObjectModel;
-using static PokeRogue.Interface.IFileService;
 
 namespace PokeRogue.ViewModel
 {

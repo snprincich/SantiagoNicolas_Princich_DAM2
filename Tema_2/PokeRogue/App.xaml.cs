@@ -4,7 +4,6 @@ using PokeRogue.Services;
 using System.Windows;
 using PokeRogue.Models;
 using PokeRogue.Utils;
-using static PokeRogue.Interface.IFileService;
 using PokeRogue.Interface;
 
 namespace PokeRogue

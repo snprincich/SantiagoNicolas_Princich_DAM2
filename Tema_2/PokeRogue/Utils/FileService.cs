@@ -2,8 +2,8 @@
 using System.IO;
 
 using System.Text.Json;
+using PokeRogue.Interface;
 
-using static PokeRogue.Interface.IFileService;
 
 namespace PokeRogue.Utils
 {
