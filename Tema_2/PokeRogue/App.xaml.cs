@@ -5,6 +5,7 @@ using System.Windows;
 using PokeRogue.Models;
 using PokeRogue.Utils;
 using static PokeRogue.Interface.IFileService;
+using PokeRogue.Interface;
 
 namespace PokeRogue
 {
@@ -44,7 +45,7 @@ namespace PokeRogue
 
             //services
             services.AddSingleton<GenerarPokemonService>();
-            services.AddSingleton<GestorAPIService>();
+            services.AddSingleton<IGestorAPIService, GestorAPIService>();
             services.AddSingleton(typeof(IFileService<>), typeof(FileService<>));
             services.AddTransient<ColorShinyService>();
 

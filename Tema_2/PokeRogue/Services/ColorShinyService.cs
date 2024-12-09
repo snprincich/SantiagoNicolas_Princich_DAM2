@@ -5,6 +5,8 @@ using System.Windows.Media;
 
 namespace PokeRogue.Services
 {
+
+    //YODo mover a carpeta converter
 public class ColorShinyService : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -8,15 +8,25 @@ using System.Threading.Tasks;
 
 namespace PokeRogue.Utils
 {
+    //TODO DEBERÍA SER SERVICE
     public static class HttpJsonClient<T>
     {
         public static async Task<T?> Get(string url)
         {
+            try
+            {
             using HttpClient httpClient = new HttpClient();
             {
-                HttpResponseMessage datos = await httpClient.GetAsync(url);
-                string dataget = await datos.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<T>(dataget);
+
+                    HttpResponseMessage datos = await httpClient.GetAsync(url);
+                    string dataget = await datos.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<T>(dataget);
+                
+            }
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return default(T?);
             }
         }
 

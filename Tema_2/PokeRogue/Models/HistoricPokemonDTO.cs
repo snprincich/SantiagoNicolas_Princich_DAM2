@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeRogue.Models
 {
+    //TODO Mover a DTO
     public class HistoricPokemonDTO
     {
         [JsonPropertyName("id")]

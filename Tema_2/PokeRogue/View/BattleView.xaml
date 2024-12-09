@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Label Name="Ataque" Content="{Binding Pokemon.PokeAtaque}" Grid.Column="0" Grid.Row="0"/>
+        <Label Name="Ataque" Content="{Binding Pokemon.PokeAtaque}"  Grid.Column="0" Grid.Row="0" FontSize="36"/>
         <Image Source="{Binding Pokemon.ImagePath}" Stretch="Uniform" Height="100" Grid.Column="1" Grid.Row="0"/>
         <ProgressBar Name="Vida" Minimum="0" Maximum="{Binding Pokemon.PokeHp}" Value="{Binding Pokemon.PokeHpActual}"  Orientation="Horizontal" Grid.Column="2"  Grid.Row="0" Height="25"/>
         <Label Name="PokemonVidaPorcentual" Content="{Binding Pokemon.VidaPorcentaje}" Grid.Column="2"  Grid.Row="0"  Height="25"/>

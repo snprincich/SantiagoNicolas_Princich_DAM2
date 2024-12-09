@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using PokeRogue.Interface;
 using PokeRogue.Models;
 using PokeRogue.Utils;
 using System;
@@ -10,25 +11,36 @@ using System.Threading.Tasks;
 
 namespace PokeRogue.Services
 {
-    public class GestorAPIService
+    public class GestorAPIService : IGestorAPIService
     {
         public async Task<HistoricPokemonDTO> CrearHistoricDTO(Pokemon pokemon, Batalla batalla)
         {
-            HistoricPokemonDTO poke = new HistoricPokemonDTO
+            HistoricPokemonDTO? poke = null;
+            try
             {
-                Id = await HttpJsonClient<int>.Get(Constantes.MI_POKEAPI_URL + Constantes.MI_POKEAPI_LASTID) +1,
-                DateStart = batalla.dateStart,
-                DateEnd = batalla.dateEnd,
-                PokeName = pokemon.PokemonName,
-                DamageDoneTrainer = batalla.damageDoneTrainer,
-                DamageReceivedTrainer = batalla.damageReceivedTrainer,
-                DamageDonePokemon = batalla.damageDonePokemon,
-                PokeImagen = pokemon.ImagePath,
-                Capturado = pokemon.Capturado,
-                Shiny = pokemon.Shiny
-            };
+                poke = new HistoricPokemonDTO
+                {
+                    //TODO GUID
+                    Id = await HttpJsonClient<int>.Get(Constantes.MI_POKEAPI_URL + Constantes.MI_POKEAPI_LASTID) + 1,
+                    DateStart = batalla.dateStart,
+                    DateEnd = batalla.dateEnd,
+                    PokeName = pokemon.PokemonName,
+                    DamageDoneTrainer = batalla.damageDoneTrainer,
+                    DamageReceivedTrainer = batalla.damageReceivedTrainer,
+                    DamageDonePokemon = batalla.damageDonePokemon,
+                    PokeImagen = pokemon.ImagePath,
+                    Capturado = pokemon.Capturado,
+                    Shiny = pokemon.Shiny
+                };
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+           
             return poke;
         }
+
+
 
         public async Task<HistoricPokemonDTO> GetPokemon()
         {
@@ -66,13 +78,6 @@ namespace PokeRogue.Services
                 return new List<HistoricPokemonDTO>();
             }
         }
-
-        public int GenerarIdAleatorio()
-        {
-            Random random = new Random();
-            return random.Next(1, 2001);
-        }
-
     }
 }
 

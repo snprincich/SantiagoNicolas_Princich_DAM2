@@ -12,7 +12,7 @@ namespace PokeRogue.Utils
             public const string POKE_URL = "https://pokeapi.co/api/v2/pokemon/";
             public const string ATTACK = "attack";
             public const string HP = "hp";
-            public const string MI_POKEAPI_URL = "https://localhost:32769/Pokemon/";
+            public const string MI_POKEAPI_URL = "https://localhost:8081/pokemon/";
             public const string MI_POKEAPI_LASTID = "LastID";
             public const string JSON_FILTER = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
     }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using PokeRogue.Interface;
 using PokeRogue.Models;
 using PokeRogue.Services;
 using PokeRogue.Utils;
@@ -12,7 +13,7 @@ namespace PokeRogue.ViewModel
     {
         
         private GenerarPokemonService generarPokemonService;
-        private GestorAPIService gestorAPIService;
+        private IGestorAPIService gestorAPIService;
 
         [ObservableProperty]
         public Pokemon _pokemon;
@@ -22,7 +23,7 @@ namespace PokeRogue.ViewModel
 
         private Batalla batalla;
 
-        public BattleViewModel(GenerarPokemonService generarPokemonService, GestorAPIService gestorAPIService, Jugador jugador) 
+        public BattleViewModel(GenerarPokemonService generarPokemonService, IGestorAPIService gestorAPIService, Jugador jugador) 
         {
             this.generarPokemonService = generarPokemonService;
             this.gestorAPIService = gestorAPIService;

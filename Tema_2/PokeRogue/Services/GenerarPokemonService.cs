@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace PokeRogue.Services
 {
-    public class GenerarPokemonService
+    //TODO AGREGAR SERVICE
+    public class GenerarPokemonService 
     {
         
         public async Task<Pokemon> GetPokemon()
