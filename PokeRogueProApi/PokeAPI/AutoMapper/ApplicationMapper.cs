@@ -2,6 +2,7 @@
 using AutoMapper;
 using PokeAPI.Models.DTOs;
 using PokeAPI.Models.Entity;
+using PokeAPI.Models.DTOs.PokemonDTO;
 
 namespace PokeAPI.AutoMapper
 {
@@ -9,12 +10,14 @@ namespace PokeAPI.AutoMapper
     {
         public ApplicationMapper()
         {
-           // CreateMap<Category, CategoryDto>().ReverseMap();
+            // CreateMap<Category, CategoryDto>().ReverseMap();
             //CreateMap<Category, CreateCategoryDto>().ReverseMap();
-           // CreateMap<LibroEntity, LibroDTO>().ReverseMap();
-           // CreateMap<LibroEntity, CreateLibroDTO>().ReverseMap();
+            // CreateMap<LibroEntity, LibroDTO>().ReverseMap();
+            // CreateMap<LibroEntity, CreateLibroDTO>().ReverseMap();
             //CreateMap<EditorialEntity, EditorialDTO>().ReverseMap();
             //CreateMap<EditorialEntity, CreateEditorialDTO>().ReverseMap();
+            CreateMap<Pokemon, PokemonDTO>().ReverseMap();
+            CreateMap<Pokemon, CreatePokemonDTO>().ReverseMap();
             CreateMap<AppUser, UserDto>().ReverseMap();
         }
     }

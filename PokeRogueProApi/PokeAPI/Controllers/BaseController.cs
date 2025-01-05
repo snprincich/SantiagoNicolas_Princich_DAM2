@@ -1,4 +1,4 @@
-﻿namespace RestAPI.Controllers
+﻿namespace PokeAPI.Controllers
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
@@ -6,9 +6,10 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using global::PokeAPI.Repository;
+    using global::AutoMapper;
+    using global::PokeAPI.Repository.IRepository;
 
-    namespace RestAPI.Controllers
+    namespace PokeAPI.Controllers
     {
         [ApiController]
         [Route("api/[controller]")]

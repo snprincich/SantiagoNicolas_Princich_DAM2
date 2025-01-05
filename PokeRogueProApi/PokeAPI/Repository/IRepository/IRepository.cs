@@ -1,6 +1,6 @@
 ﻿using PokeAPI.Models.Entity;
 
-namespace PokeAPI.Repository
+namespace PokeAPI.Repository.IRepository
 {
     public interface IRepository<TEntity> where TEntity : class
     {

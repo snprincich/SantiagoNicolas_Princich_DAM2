@@ -1,102 +1,136 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PokeAPI.DTO;
-using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore;
+using PokeAPI.Data;
+using PokeAPI.Models.DTOs;
+using PokeAPI.Models.DTOs.PokemonDTO;
+using PokeAPI.Models.Entity;
+using PokeAPI.Repository.IRepository;
 
 namespace PokeAPI.Controllers
 {
+    //[Route("api/users")]
     [ApiController]
     [Route("[controller]")]
-    public class PokemonController : Controller
+    public class PokemonController : ControllerBase
     {
-        private readonly ILogger<PokemonDTO> _logger;
+        private readonly ApplicationDbContext _context;
+        private readonly IPokemonRepository _pokemonRepository;
+        private readonly IMapper _mapper;
+        protected ResponseApi _responseApi;
 
-        private static List<PokemonDTO> Pokemons = new List<PokemonDTO>();
-
-
-        public PokemonController(ILogger<PokemonDTO> logger)
+        public PokemonController(IPokemonRepository pokemonRepository, IMapper mapper, ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
+            _pokemonRepository = pokemonRepository;
+            _responseApi = new ResponseApi();
+            _mapper = mapper;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet(Name = "GetAllElement")]
-        public IEnumerable<PokemonDTO> Get()
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get()
         {
-            return Pokemons;
+            var pokemons = await _context.Pokemons.ToListAsync();
+            var pokemonDtos = _mapper.Map<List<PokemonDTO>>(pokemons);
+            return Ok(pokemonDtos);
         }
 
-        [HttpGet("LastID")]
-        public int GetID()
-        {
-            if (Pokemons != null )
-            {
-                return Pokemons.Count();
-            }
-            return 0;
-        }
-
+        [Authorize(Roles = "admin")]
         [HttpGet("{id}")]
-        public PokemonDTO GetOne(int id)
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetOne(int id)
         {
-            return Pokemons.FirstOrDefault(x => x.Id == id);
+            var pokemon = await _context.Pokemons.FindAsync(id);
+            if (pokemon == null) return NotFound();
+
+            var pokemonDto = _mapper.Map<PokemonDTO>(pokemon);
+            return Ok(pokemonDto);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public PokemonDTO Post([FromBody] PokemonDTO pokemon)
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Post([FromBody] PokemonDTO pokemonDto)
         {
-            if (Pokemons.Any(x => x.Id == pokemon.Id))
-            {
-                return null;
-            }
-            Pokemons.Add(pokemon);
-            return pokemon;
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var pokemon = _mapper.Map<Pokemon>(pokemonDto);
+
+            // Do not set pokemon.Id manually (it should be auto-generated)
+            _context.Pokemons.Add(pokemon);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetOne), new { id = pokemon.Id }, pokemonDto);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
-        public PokemonDTO Put([FromBody] PokemonDTO pokemon, int id)
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put([FromBody] PokemonDTO pokemonDto, int id)
         {
-            if (id != pokemon?.Id)
-            {
-                return null;
-            }
-            PokemonDTO? PokemonBBDD = Pokemons.FirstOrDefault(x => x.Id == pokemon.Id);
-            if (PokemonBBDD == null)
-            {
-                return null;
-            }
-            PokemonBBDD.Id = id;
-            PokemonBBDD.DateStart = pokemon.DateStart;
-            PokemonBBDD.DateEnd = pokemon.DateEnd;
-            PokemonBBDD.DamageDoneTrainer = pokemon.DamageDoneTrainer;
-            PokemonBBDD.DamageReceivedTrainer = pokemon.DamageReceivedTrainer;
-            PokemonBBDD.DamageDonePokemon = pokemon.DamageDonePokemon;
-            PokemonBBDD.PokeImagen = pokemon.PokeImagen;
-            PokemonBBDD.Capturado = pokemon.Capturado;
-            PokemonBBDD.Shiny = pokemon.Shiny;
-            return PokemonBBDD;
+            if (id != pokemonDto.Id) return BadRequest();
+
+            var pokemon = await _context.Pokemons.FindAsync(id);
+            if (pokemon == null) return NotFound();
+
+            _mapper.Map(pokemonDto, pokemon);
+            _context.Pokemons.Update(pokemon);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
-        public bool Remove(int id)
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Remove(int id)
         {
-            PokemonDTO? PokemonBBDD = Pokemons.FirstOrDefault(x => x.Id == id);
-            if (PokemonBBDD == null)
-            {
-                return false;
-            }
-            return Pokemons.Remove(PokemonBBDD);
+            var pokemon = await _context.Pokemons.FindAsync(id);
+            if (pokemon == null) return NotFound();
+
+            _context.Pokemons.Remove(pokemon);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpDelete("deleteAll")]
-        public IActionResult DeleteAll()
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteAll()
         {
-            if (Pokemons.Count == 0)
-            {
-                return NoContent();
-            }
+            var pokemons = _context.Pokemons.ToList();
+            if (!pokemons.Any()) return NoContent();
 
-            Pokemons.Clear();
-            return Ok("Todos los pokemons han borrados");
+            _context.Pokemons.RemoveRange(pokemons);
+            await _context.SaveChangesAsync();
+
+            return Ok("Todos los pokemons han sido borrados");
         }
 
     }

@@ -18,7 +18,7 @@ namespace PokeAPI.Data
         //Add models here
         public DbSet<User> Users { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
-
+        public DbSet<Pokemon> Pokemons { get; set; }
 
     }
 }

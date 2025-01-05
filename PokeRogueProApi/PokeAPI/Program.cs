@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add services to the container.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 /* NO NECESARIO PARA EL LOGIN
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ILibroRepository, LibroRepository>();
