@@ -10,9 +10,9 @@ namespace BasicApi.Controllers
     [ApiController]
     public class CocheController : BaseController<CocheEntity, CocheDto, CreateCocheDto>
     {
-        public CocheController(ICocheRepository cocheRepository,
-            IMapper mapper, ILogger<ICocheRepository> logger)
-            : base(cocheRepository, mapper, logger)
+        public CocheController(ICocheRepository CocheRepository,
+            IMapper mapper, ILogger<CocheController> logger)
+            : base(CocheRepository, mapper, logger)
         {
 
         }

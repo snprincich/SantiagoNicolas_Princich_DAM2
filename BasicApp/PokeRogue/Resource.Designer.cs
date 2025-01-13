@@ -59,25 +59,5 @@ namespace BasicApp {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] check_icon {
-            get {
-                object obj = ResourceManager.GetObject("check_icon", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] error_icon {
-            get {
-                object obj = ResourceManager.GetObject("error_icon", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

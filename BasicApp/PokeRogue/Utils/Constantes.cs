@@ -6,14 +6,32 @@ using System.Threading.Tasks;
 
 namespace BasicApp.Utils
 {
-        public static class Constantes
-        {
-            public const int JUGADOR_HP_MAX = 1000;
-            public const string POKE_URL = "https://pokeapi.co/api/v2/pokemon/";
-            public const string ATTACK = "attack";
-            public const string HP = "hp";
-            public const string MI_POKEAPI_URL = "https://localhost:8081/pokemon/";
-            public const string MI_POKEAPI_LASTID = "LastID";
-            public const string JSON_FILTER = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+    public static class Constantes
+    {
+        #region Math
+        public const string Mas = "+";
+        public const string Menos = "-";
+        public const string Por = "x";
+        public const string Division = "÷";
+        public const string Resultado = "Resultado";
+        public const string Pi = "π";
+        #endregion
+
+        #region WPF_Views
+        public const int MAX_NUMBER_ITEMS_STACK_PANEL = 15;
+        public const int MIN_NUMBER_ITEMS_STACK_PANEL = 5;
+        public const string HALLOWEEN_URL_PATH = "/Resources/Halloween.png";
+        public const string JSON_FILTER = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+        #endregion
+
+        #region API Url
+        public const string BASE_URL = "http://localhost:8080/api/";
+        public const string LOGIN_PATH = "users";
+        public const string LIBROS_PATH = "libro";
+        #endregion
+
+
+
+
     }
 }

@@ -9,23 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\check_icon.png" />
-    <None Remove="Resources\error_icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="WPF-UI" Version="3.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\check_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\error_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +27,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Control\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

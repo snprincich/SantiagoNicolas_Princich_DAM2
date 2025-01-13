@@ -8,8 +8,10 @@
     using System.Threading.Tasks;
     using global::AutoMapper;
     using global::BasicApi.Repository.IRepository;
+    using System.Runtime.ConstrainedExecution;
+    using BasicApi.Models.DTOs.CocheDto;
 
-        [ApiController]
+    [ApiController]
         [Route("api/[controller]")]
         public abstract class BaseController<TEntity, TDto, TCreateDto> : ControllerBase
             where TEntity : class
@@ -25,7 +27,28 @@
                 _logger = logger;
             }
 
-            [AllowAnonymous]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [Authorize(Roles = "admin")]
+        [HttpGet("{id:int}", Name = "[controller]_GetEntity")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var entity = await _repository.GetAsync(id);
+                if (entity == null) return NotFound();
+
+                return Ok(_mapper.Map<TDto>(entity));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching data");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [Authorize(Roles = "admin")]
             [HttpGet]
             [ProducesResponseType(StatusCodes.Status200OK)]
             public async Task<IActionResult> GetAll()
@@ -55,10 +78,9 @@
 
                     var entity = _mapper.Map<TEntity>(createDto);
                     await _repository.CreateAsync(entity);
-
-                    var dto = _mapper.Map<TDto>(entity);
-                    return CreatedAtRoute("GetEntity", new { id = entity.GetHashCode() }, dto);
-                }
+                var dto = _mapper.Map<TDto>(entity);
+                return CreatedAtRoute($"{ControllerContext.ActionDescriptor.ControllerName}_GetEntity", new { id = entity.GetHashCode() }, dto);
+            }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error creating data");

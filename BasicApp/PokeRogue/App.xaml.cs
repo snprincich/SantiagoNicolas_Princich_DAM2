@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using BasicApp.ViewModel;
-using BasicApp.Services;
 using System.Windows;
-using BasicApp.Models;
 using BasicApp.Utils;
 using BasicApp.Interface;
+using BasicApp.DTO;
 
 namespace BasicApp
 {
@@ -37,20 +36,14 @@ namespace BasicApp
 
             //view viewModels
             services.AddTransient<MainViewModel>();
-            services.AddSingleton<BattleViewModel>();
-            services.AddTransient<TeamViewModel>();
             services.AddTransient<HistoricViewModel>();
-            services.AddTransient<ImportViewModel>();
 
             //services
-            services.AddSingleton<GenerarPokemonService>();
-            services.AddSingleton<IGestorAPIService, GestorAPIService>();
             services.AddSingleton(typeof(IFileService<>), typeof(FileService<>));
-            services.AddTransient<ColorShinyService>();
 
             //models
-            services.AddSingleton<Jugador>();
-            services.AddTransient<Batalla>();
+            services.AddSingleton<LoginDTO>();
+            services.AddTransient<UserDTO>();
 
 
             return services.BuildServiceProvider();
