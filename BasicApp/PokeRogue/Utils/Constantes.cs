@@ -27,7 +27,8 @@ namespace BasicApp.Utils
         #region API Url
         public const string BASE_URL = "http://localhost:8080/api/";
         public const string LOGIN_PATH = "users";
-        public const string LIBROS_PATH = "libro";
+        public const string COCHE_PATH = "Coche";
+
         #endregion
 
 

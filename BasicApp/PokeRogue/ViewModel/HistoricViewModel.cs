@@ -19,17 +19,17 @@ namespace BasicApp.ViewModel
 
         public override async Task LoadAsync()
         {
-            
-            CocheDTO coche = await HttpJsonClient<CocheDTO>.Get("Coche");
-            Console.Out.WriteLine("");
-            /*
-            Pokemons.Clear();
-            List<HistoricPokemonDTO>? listaPokemon = await HttpJsonClient<List<HistoricPokemonDTO>>.Get(Constantes.MI_POKEAPI_URL);
-            foreach (HistoricPokemonDTO pokemon in listaPokemon ?? [])
+
+            await HttpJsonClient<CocheDTO>.Patch(Constantes.COCHE_PATH+"/13",new CocheDTO
             {
-                Pokemons.Add(pokemon);
-            }
-            */
+                Id = 13,
+                Marca = "PruebaPost2",
+                Modelo = "PruebaPost2",
+            });
+
+            List<CocheDTO> listaCoche = await HttpJsonClient<List<CocheDTO>>.Get("Coche");
+            Console.Out.WriteLine("");
+
         }
     
     }
