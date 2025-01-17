@@ -25,6 +25,7 @@ public partial class DashboardViewModel : ViewModel
     {
         _httpJsonService = httpJsonProvider;
 
+
         CargarCoches();
     }
 
@@ -32,10 +33,10 @@ public partial class DashboardViewModel : ViewModel
     public async Task CargarCoches()
     {
         IEnumerable<CocheDTO> coches = await _httpJsonService.GetAsync(ConstantesApi.COCHE_PATH);
-        listaCoches = new ObservableCollection<CocheDTO>();
+        ListaCoches = new ObservableCollection<CocheDTO>();
         foreach (var coche in coches)
         {
-            listaCoches.Add(coche);
+            ListaCoches.Add(coche);
         }
     }
 
