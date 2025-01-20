@@ -1,0 +1,37 @@
+﻿<Page x:Class="Wpf.Ui.Demo.Mvvm.Views.Pages.RegistroPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_UI.Views.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:viewmodels="clr-namespace:Wpf.Ui.Demo.Mvvm.ViewModels"
+      mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance viewmodels:RegistroViewModel}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      
+      Title="RegistroPage">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Registration" FontSize="20" FontWeight="Bold" Grid.Row="0"/>
+        <TextBox Text="{Binding ViewModel.Name}" Grid.Row="1"/>
+        <TextBox Text="{Binding ViewModel.Email}" Grid.Row="2"/>
+        <TextBox  Text="{Binding ViewModel.Password}" Grid.Row="3"/>
+        <TextBox Text="{Binding ViewModel.ConfPassword}" Grid.Row="4"/>
+
+        <CheckBox Content="I accept all terms AND conditions" Grid.Row="5"/>
+
+        <Button Content="Register Now" Background="#007BFF" Foreground="White" Height="40" Grid.Row="6" Command="{Binding ViewModel.RegistroCommand}" />
+        <TextBlock Text="Already have an account? Login now" HorizontalAlignment="Center" Cursor="Hand" Foreground="Blue" Grid.Row="7"/>
+    </Grid>
+</Page>

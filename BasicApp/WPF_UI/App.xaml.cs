@@ -12,6 +12,8 @@ using Wpf.Ui.Demo.Mvvm.Services;
 using Wpf.Ui.DependencyInjection;
 using WPF_UI.Interface;
 using WPF_UI.Services;
+using WPF_UI.Views;
+using Wpf.Ui.Demo.Mvvm.Views;
 
 namespace Wpf.Ui.Demo.Mvvm;
 
@@ -63,6 +65,10 @@ public partial class App
                 _ = services.AddSingleton<ViewModels.DataViewModel>();
                 _ = services.AddSingleton<Views.Pages.SettingsPage>();
                 _ = services.AddSingleton<ViewModels.SettingsViewModel>();
+                _ = services.AddSingleton<Views.Pages.RegistroPage>();
+                _ = services.AddSingleton<ViewModels.RegistroViewModel>();
+                _ = services.AddSingleton<Views.Pages.LoginPage>();
+                _ = services.AddSingleton<ViewModels.LoginViewModel>();
 
                 // Services
                 _ = services.AddSingleton(typeof(IHttpJsonProvider<>), typeof(HttpJsonService<>));

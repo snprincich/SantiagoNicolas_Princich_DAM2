@@ -44,7 +44,7 @@ public class ApplicationHostService(IServiceProvider serviceProvider) : IHostedS
             _navigationWindow = (serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow)!;
             _navigationWindow!.ShowWindow();
 
-            _ = _navigationWindow.Navigate(typeof(Views.Pages.DashboardPage));
+            _ = _navigationWindow.Navigate(typeof(Views.Pages.LoginPage));
         }
 
         await Task.CompletedTask;
