@@ -25,8 +25,8 @@ namespace BasicApi.Migrations
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
-                name: "AspNetUsers",
             migrationBuilder.CreateTable(
+                name: "AspNetUsers",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),

@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Wpf.Ui.Demo.Mvvm;
 using WPF_UI.Constants;
 using WPF_UI.DTO;
 using WPF_UI.Interface;
@@ -15,7 +17,9 @@ namespace WPF_UI.Services
     {
         public static string Token = string.Empty;
 
-        //CREAR UN METODO SOLO PARA LA RENOVACION DE TOKEN ASI NO HAY QUE ESCRIBIRLO EN EL GET, POST Y PATCH
+        LoginDTO loginDTO = App.Services.GetService<LoginDTO>();
+
+
         public async Task<IEnumerable<T?>> GetAsync(string path)
         {
             try
@@ -42,11 +46,7 @@ namespace WPF_UI.Services
 
         public async Task Authenticate(string path, HttpClient httpClient, HttpResponseMessage request)
         {
-            LoginDTO loginDTO = new LoginDTO
-            {
-                Password = "wnD/LbJq?9t,}-628%)",
-                UserName = "sufrido"
-            };
+
             HttpContent httpContent = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8, "application/json");
 
             HttpResponseMessage requestToken = await httpClient.PostAsync($"{ConstantesApi.BASE_URL}{ConstantesApi.LOGIN_PATH}/login", httpContent);
@@ -57,6 +57,37 @@ namespace WPF_UI.Services
             Token = tokenUser?.Result?.Token ?? string.Empty;
             httpClient.DefaultRequestHeaders.Remove("Authorization");
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {Token}");
+
+
+        }
+
+        public async Task<UserDTO> LoginAsync(LoginDTO loginDTO)
+        {
+            try
+            {
+                App.Services.GetService<LoginDTO>().UserName = loginDTO.UserName;
+                App.Services.GetService<LoginDTO>().Password = loginDTO.Password;
+
+                using HttpClient httpClient = new HttpClient();
+                {
+                    HttpContent httpContent = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8, "application/json");
+                    HttpResponseMessage requestToken = await httpClient.PostAsync($"{ConstantesApi.BASE_URL}{ConstantesApi.LOGIN_PATH}/login", httpContent);
+
+                    string dataTokenRequest = await requestToken.Content.ReadAsStringAsync();
+                    UserDTO tokenUser = JsonSerializer.Deserialize<UserDTO>(dataTokenRequest);
+
+                    Token = tokenUser?.Result?.Token ?? string.Empty;
+                    httpClient.DefaultRequestHeaders.Remove("Authorization");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {Token}");
+
+                    return tokenUser;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return default;
         }
 
         public async Task<T?> PostAsync(string path, T data)
