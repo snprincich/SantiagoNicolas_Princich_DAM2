@@ -30,6 +30,10 @@
         <TextBlock Text="Forgot password?" HorizontalAlignment="Right" Foreground="Blue" Cursor="Hand"  Grid.Row="4"/>
 
         <Button Content="Login Now" Command="{Binding ViewModel.LoginCommand}" Background="#007BFF" Foreground="White" Height="40" Grid.Row="5"/>
-        <TextBlock Text="Don't have an account? Signup now" HorizontalAlignment="Center" Cursor="Hand" Foreground="Blue" Grid.Row="6"/>
+        <TextBlock Text="Don't have an account? Signup now"   HorizontalAlignment="Center" Cursor="Hand" Foreground="Blue" Grid.Row="6">
+            <TextBlock.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ViewModel.ToRegisterPageCommand}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
     </Grid>
 </Page>

@@ -52,5 +52,11 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
             
         }
 
+        [RelayCommand]
+        public void ToRegisterPage(object? parameter)
+        {
+            _navigationService.Navigate(typeof(Views.Pages.RegistroPage));
+        }
+
     }
 }

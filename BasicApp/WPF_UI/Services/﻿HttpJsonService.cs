@@ -90,6 +90,30 @@ namespace WPF_UI.Services
             return default;
         }
 
+        public async Task<UserDTO> RegistroAsync(RegistroDTO registroDTO)
+        {
+            try
+            {
+                using HttpClient httpClient = new HttpClient();
+                {
+                    HttpContent httpContent = new StringContent(JsonSerializer.Serialize(registroDTO), Encoding.UTF8, "application/json");
+                    HttpResponseMessage requestToken = await httpClient.PostAsync($"{ConstantesApi.BASE_URL}{ConstantesApi.LOGIN_PATH}/register", httpContent);
+
+                    string dataTokenRequest = await requestToken.Content.ReadAsStringAsync();
+                    UserDTO tokenUser = JsonSerializer.Deserialize<UserDTO>(dataTokenRequest);
+
+                    return tokenUser;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return default;
+        }
+
+
+
         public async Task<T?> PostAsync(string path, T data)
         {
             try

@@ -22,16 +22,22 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Text="Registration" FontSize="20" FontWeight="Bold" Grid.Row="0"/>
-        <TextBox Text="{Binding ViewModel.Name}" Grid.Row="1"/>
-        <TextBox Text="{Binding ViewModel.Email}" Grid.Row="2"/>
-        <TextBox  Text="{Binding ViewModel.Password}" Grid.Row="3"/>
-        <TextBox Text="{Binding ViewModel.ConfPassword}" Grid.Row="4"/>
+        <ui:TextBox Text="{Binding ViewModel.Name}"  Grid.Row="1" PlaceholderText="Nombre"/>
+        <ui:TextBox Text="{Binding ViewModel.UserName}" Grid.Row="2" PlaceholderText="Nickname"/>
+        <ui:TextBox Text="{Binding ViewModel.Email}" Grid.Row="3" PlaceholderText="Email"/>
+        <ui:TextBox  Text="{Binding ViewModel.Password}" Grid.Row="4" PlaceholderText="Contraseña"/>
+        <ui:TextBox Text="{Binding ViewModel.ConfPassword}" Grid.Row="5" PlaceholderText="Confirmar Contraseña"/>
 
-        <CheckBox Content="I accept all terms AND conditions" Grid.Row="5"/>
+        <CheckBox Content="I accept all terms AND conditions" Grid.Row="6"/>
 
-        <Button Content="Register Now" Background="#007BFF" Foreground="White" Height="40" Grid.Row="6" Command="{Binding ViewModel.RegistroCommand}" />
-        <TextBlock Text="Already have an account? Login now" HorizontalAlignment="Center" Cursor="Hand" Foreground="Blue" Grid.Row="7"/>
+        <Button Content="Register Now" Background="#007BFF" Foreground="White" Height="40" Grid.Row="7" Command="{Binding ViewModel.RegistroCommand}" />
+        <TextBlock Text="Already have an account? Login now" HorizontalAlignment="Center" Cursor="Hand" Foreground="Blue" Grid.Row="8">
+            <TextBlock.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ViewModel.ToLoginPageCommand}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
     </Grid>
 </Page>

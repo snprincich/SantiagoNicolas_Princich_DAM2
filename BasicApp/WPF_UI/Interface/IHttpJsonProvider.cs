@@ -15,5 +15,6 @@ namespace WPF_UI.Interface
         Task<T?> PatchAsync(string path, T data);
         Task<T?> PostAsync(string path, T data);
         Task<UserDTO> LoginAsync(LoginDTO loginDTO);
+        Task<UserDTO> RegistroAsync(RegistroDTO registroDTO);
     }
 }
