@@ -69,7 +69,7 @@ public partial class App
                 _ = services.AddSingleton<ViewModels.RegistroViewModel>();
                 _ = services.AddSingleton<Views.Pages.LoginPage>();
                 _ = services.AddSingleton<ViewModels.LoginViewModel>();
-                _ = services.AddSingleton<WPF_UI.DTO.LoginDTO>();
+                _ = services.AddSingleton<WPF_UI.Services.Credenciales>();
 
                 // Services
                 _ = services.AddSingleton(typeof(IHttpJsonProvider<>), typeof(HttpJsonService<>));

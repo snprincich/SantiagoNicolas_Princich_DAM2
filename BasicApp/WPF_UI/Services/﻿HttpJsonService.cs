@@ -17,7 +17,7 @@ namespace WPF_UI.Services
     {
         public static string Token = string.Empty;
 
-        LoginDTO loginDTO = App.Services.GetService<LoginDTO>();
+        LoginDTO loginDTO = App.Services.GetService<Credenciales>().GetCredenciales();
 
 
         public async Task<IEnumerable<T?>> GetAsync(string path)
@@ -65,8 +65,7 @@ namespace WPF_UI.Services
         {
             try
             {
-                App.Services.GetService<LoginDTO>().UserName = loginDTO.UserName;
-                App.Services.GetService<LoginDTO>().Password = loginDTO.Password;
+                App.Services.GetService<Credenciales>().SetCredenciales(loginDTO);
 
                 using HttpClient httpClient = new HttpClient();
                 {
