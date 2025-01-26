@@ -20,8 +20,14 @@
 
     <Grid >
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <ui:FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE700;" HorizontalAlignment="Left" Foreground="White" />
 
+        <ui:Button Name="Add" Content="Add" HorizontalAlignment="Right" Command="{Binding ViewModel.AddCommand}" Icon="" Foreground="White" />
         <ui:DataGrid
             Grid.Row="1" 
             x:Name="MyDataGrid"       
@@ -34,6 +40,7 @@
             HorizontalAlignment="Left"
             MinRowHeight="25"
             MaxHeight="400" 
+            
             ColumnWidth="Auto"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"/>

@@ -3,11 +3,15 @@
 // Copyright (C) Leszek Pomianowski and WPF UI Contributors.
 // All Rights Reserved.
 
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
+using System.Windows.Navigation;
+using Wpf.Ui.Demo.Mvvm.Views;
 using WPF_UI.Constants;
 using WPF_UI.DTO;
 using WPF_UI.Interface;
 using WPF_UI.Services;
+using WPF_UI.Views.Windows;
 
 namespace Wpf.Ui.Demo.Mvvm.ViewModels;
 
@@ -24,21 +28,38 @@ public partial class DashboardViewModel : ViewModel
     public DashboardViewModel(IHttpJsonProvider<CocheDTO> httpJsonProvider)
     {
         _httpJsonService = httpJsonProvider;
-
-
-        CargarCoches();
     }
 
 
     public async Task CargarCoches()
     {
-        IEnumerable<CocheDTO> coches = await _httpJsonService.GetAsync(ConstantesApi.COCHE_PATH);
-        ListaCoches = new ObservableCollection<CocheDTO>();
-        foreach (var coche in coches)
+        if (App.Services.GetService<Credenciales>().GetCredenciales().UserName != null)
         {
-            ListaCoches.Add(coche);
+
+            IEnumerable<CocheDTO> coches = await _httpJsonService.GetAsync(ConstantesApi.COCHE_PATH);
+            ListaCoches = new ObservableCollection<CocheDTO>();
+            foreach (var coche in coches)
+            {
+                 ListaCoches.Add(coche);
+            }
+
         }
     }
+
+
+    [RelayCommand]
+    public void Add(object? parameter)
+    {
+
+        var view = App.Services.GetService<AddWindow>();
+        var viewmodel = App.Services.GetService<AddViewModel>();
+
+        viewmodel.SelectedView = view;
+        view.DataContext = viewmodel;
+
+        view.Show();
+    }
+
 
     public override void OnNavigatedTo()
     {

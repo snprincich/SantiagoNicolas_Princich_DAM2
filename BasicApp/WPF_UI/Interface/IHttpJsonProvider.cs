@@ -10,6 +10,7 @@ namespace WPF_UI.Interface
 {
     public interface IHttpJsonProvider<T> where T : class
     {
+        public void RemoveToken();
         Task<IEnumerable<T?>> GetAsync(string path);
         Task Authenticate(string path, HttpClient httpClient, HttpResponseMessage request);
         Task<T?> PatchAsync(string path, T data);

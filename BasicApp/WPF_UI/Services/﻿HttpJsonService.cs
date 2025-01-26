@@ -20,6 +20,11 @@ namespace WPF_UI.Services
         LoginDTO loginDTO = App.Services.GetService<Credenciales>().GetCredenciales();
 
 
+        public void RemoveToken()
+        {
+            Token = string.Empty;
+        }
+
         public async Task<IEnumerable<T?>> GetAsync(string path)
         {
             try

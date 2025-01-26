@@ -4,7 +4,7 @@
 // All Rights Reserved.
 
 using Wpf.Ui.Demo.Mvvm.Views;
-
+using WPF_UI.Views.Pages;
 namespace Wpf.Ui.Demo.Mvvm.Services;
 
 /// <summary>
@@ -44,7 +44,7 @@ public class ApplicationHostService(IServiceProvider serviceProvider) : IHostedS
             _navigationWindow = (serviceProvider.GetService(typeof(INavigationWindow)) as INavigationWindow)!;
             _navigationWindow!.ShowWindow();
 
-            _ = _navigationWindow.Navigate(typeof(Views.Pages.LoginPage));
+            _ = _navigationWindow.Navigate(typeof(LoginPage));
         }
 
         await Task.CompletedTask;

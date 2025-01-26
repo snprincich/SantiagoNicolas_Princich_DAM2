@@ -1,5 +1,6 @@
 
 
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
 using WPF_UI.Constants;
 using WPF_UI.DTO;
@@ -42,6 +43,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
             if (userDTO.IsSuccess)
             {
                 _navigationService.Navigate(typeof(Views.Pages.DashboardPage));
+                App.Services.GetService<DashboardViewModel>().CargarCoches();
             }
             else
             {
@@ -57,6 +59,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
         {
             _navigationService.Navigate(typeof(Views.Pages.RegistroPage));
         }
+
 
     }
 }

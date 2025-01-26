@@ -10,23 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf.Ui.Demo.Mvvm.ViewModels;
 
-namespace WPF_UI.Views.Pages
+namespace WPF_UI.Views.Windows
 {
-    /// <summary>
-    /// Lógica de interacción para LoginPage.xaml
-    /// </summary>
-    public partial class LoginPage : Page
-    {
-        public LoginViewModel ViewModel { get; }
-        public LoginPage(LoginViewModel viewModel)
-        {
-            ViewModel = viewModel;
-            DataContext = this;
 
+    public partial class AddWindow : Window
+    {
+        public AddWindow()
+        {
             InitializeComponent();
         }
     }

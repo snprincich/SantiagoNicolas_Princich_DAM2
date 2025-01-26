@@ -27,5 +27,11 @@ namespace WPF_UI.Services
             this.Password = loginDTO.Password;
         }
 
+        public void BorrarCredenciales()
+        {
+            UserName = null;
+            Password = null;
+        }
+
     }
 }

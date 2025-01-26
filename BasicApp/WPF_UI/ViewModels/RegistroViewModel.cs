@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using WPF_UI.DTO;
 using WPF_UI.Interface;
+using WPF_UI.Views;
+using WPF_UI.Views.Pages;
 
 namespace Wpf.Ui.Demo.Mvvm.ViewModels
 {
@@ -49,7 +51,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
 
             if (userDTO.IsSuccess)
             {
-                _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+                _navigationService.Navigate(typeof(LoginPage));
             }
             else
             {
@@ -60,7 +62,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
         [RelayCommand]
         public void ToLoginPage(object? parameter)
         {
-            _navigationService.Navigate(typeof(Views.Pages.LoginPage));
+            _navigationService.Navigate(typeof(LoginPage));
         }
     }
 }

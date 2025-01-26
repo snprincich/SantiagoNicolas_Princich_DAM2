@@ -48,7 +48,7 @@
             }
         }
 
-        [Authorize(Roles = "admin")]
+            [Authorize(Roles = "admin")]
             [HttpGet]
             [ProducesResponseType(StatusCodes.Status200OK)]
             public async Task<IActionResult> GetAll()
