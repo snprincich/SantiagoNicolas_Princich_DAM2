@@ -48,7 +48,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
             }
             else
             {
-
+                MessageBox.Show("Error en el POST. Intente de nuevo.", "Error POST", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -38,7 +38,7 @@ public partial class DashboardViewModel : ViewModel
         listaCoches = new List<CocheDTO>();
         PagedCoches = new ObservableCollection<CocheDTO>();
 
-        ItemsPerPage = 5;
+        ItemsPerPage = 10;
         CurrentPage = 0;
         CurrentPageView = 1;
         TotalPages = 1;

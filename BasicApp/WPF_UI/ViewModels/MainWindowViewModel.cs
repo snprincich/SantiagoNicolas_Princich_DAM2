@@ -78,7 +78,7 @@ public partial class MainWindowViewModel : ViewModel
             new NavigationViewItem()
             {
                 Content = "Login/Logout",
-                Icon = new SymbolIcon { Symbol = SymbolRegular.Settings24 },
+                Icon = new SymbolIcon { Symbol = SymbolRegular.SignOut24 },
                 TargetPageType = typeof(LoginPage),
                 Command = LogoutCommand,
             },

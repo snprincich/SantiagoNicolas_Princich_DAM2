@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
+using System.Xml.Linq;
 using WPF_UI.Constants;
 using WPF_UI.DTO;
 using WPF_UI.Interface;
@@ -12,9 +13,9 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
     public partial class LoginViewModel : ViewModel
     {
         [ObservableProperty]
-        private string? email;
+        private string? name;
         [ObservableProperty]
-        private string? password = "wnD/LbJq?9t,}-628%)";
+        private string? password;
 
 
         private INavigationService _navigationService;
@@ -30,9 +31,16 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
         [RelayCommand]
         public async Task Login(object? parameter)
         {
+
+            if (string.IsNullOrEmpty(this.Name) || string.IsNullOrEmpty(this.Password))
+            {
+                MessageBox.Show("Por favor, rellene ambos campos.", "Error de Inicio de Sesión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             LoginDTO loginDTO = new LoginDTO
             {
-                UserName = this.Email,
+                UserName = this.Name,
                 Password = this.Password
             };
 
@@ -47,7 +55,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
             }
             else
             {
-                
+                MessageBox.Show("Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
 

@@ -13,17 +13,17 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
     public partial class RegistroViewModel : ViewModel
     {
         [ObservableProperty]
-        private string? name = "pruebita";
+        private string? name;
         [ObservableProperty]
-        private string? userName = "prueba";
+        private string? userName;
         [ObservableProperty]
-        private string? email = "prueba@email.net";
+        private string? email;
         [ObservableProperty]
-        private string? password = "wnD/LbJq?9t,}-628%)";
+        private string? password;
         [ObservableProperty]
         private string? confPassword;
 
-
+       
 
 
         private INavigationService _navigationService;
@@ -37,6 +37,16 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
         [RelayCommand]
         public async Task RegistroAsync(object? parameter)
         {
+            if (string.IsNullOrEmpty(Name) ||
+                string.IsNullOrEmpty(UserName) ||
+                string.IsNullOrEmpty(Email) ||
+                string.IsNullOrEmpty(Password) &&
+                Password.Equals(ConfPassword))
+            {
+                MessageBox.Show("Por favor, rellene todos los campos.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             RegistroDTO registroDTO = new RegistroDTO
             {
                 Name = this.Name,
@@ -55,7 +65,7 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
             }
             else
             {
-
+                MessageBox.Show("Error en el registro. Intente de nuevo.", "Error de Registro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
