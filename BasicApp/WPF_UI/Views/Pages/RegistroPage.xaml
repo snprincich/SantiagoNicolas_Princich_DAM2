@@ -25,11 +25,35 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Text="Registration" FontSize="20" FontWeight="Bold" Grid.Row="0"/>
-        <ui:TextBox Text="{Binding ViewModel.Name}"  Grid.Row="1" PlaceholderText="Nombre"/>
-        <ui:TextBox Text="{Binding ViewModel.UserName}" Grid.Row="2" PlaceholderText="Username"/>
-        <ui:TextBox Text="{Binding ViewModel.Email}" Grid.Row="3" PlaceholderText="Email"/>
-        <ui:PasswordBox  Password="{Binding ViewModel.Password, Mode=TwoWay}" Grid.Row="4" PlaceholderText="Contraseña"/>
-        <ui:PasswordBox  Password="{Binding ViewModel.ConfPassword, Mode=TwoWay}" Grid.Row="5" PlaceholderText="Confirmar Contraseña"/>
+        <ui:TextBox Text="{Binding ViewModel.Name}"  Grid.Row="1" PlaceholderText="Nombre">
+            <ui:TextBox.Icon>
+                <ui:SymbolIcon Symbol="Person12" />
+            </ui:TextBox.Icon>
+        </ui:TextBox>
+        
+        <ui:TextBox Text="{Binding ViewModel.UserName}" Grid.Row="2" PlaceholderText="Username">
+            <ui:TextBox.Icon>
+                <ui:SymbolIcon Symbol="Person520" />
+            </ui:TextBox.Icon>
+        </ui:TextBox>
+        
+        <ui:TextBox Text="{Binding ViewModel.Email}" Grid.Row="3" PlaceholderText="Email">
+            <ui:TextBox.Icon>
+                <ui:SymbolIcon Symbol="MailInboxAdd16" />
+            </ui:TextBox.Icon>
+        </ui:TextBox>
+        
+        <ui:PasswordBox  Password="{Binding ViewModel.Password, Mode=TwoWay}" Grid.Row="4" PlaceholderText="Contraseña">
+            <ui:PasswordBox.Icon>
+                <ui:SymbolIcon Symbol="Password16" />
+            </ui:PasswordBox.Icon>
+            </ui:PasswordBox>
+        
+        <ui:PasswordBox  Password="{Binding ViewModel.ConfPassword, Mode=TwoWay}" Grid.Row="5" PlaceholderText="Confirmar Contraseña">
+            <ui:PasswordBox.Icon>
+                <ui:SymbolIcon Symbol="Password24" />
+            </ui:PasswordBox.Icon>
+        </ui:PasswordBox>
 
 
 
