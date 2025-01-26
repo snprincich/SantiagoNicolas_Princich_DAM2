@@ -190,18 +190,21 @@ namespace WPF_UI.Services
                     if (request.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                     {
                         await Authenticate(path, httpClient, request);
+
                         request = await httpClient.PatchAsync($"{ConstantesApi.BASE_URL}{path}", content);
 
                         if (request.IsSuccessStatusCode)
                         {
                             string responseBody = await request.Content.ReadAsStringAsync();
-                            return JsonSerializer.Deserialize<T?>(responseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                            return JsonSerializer.Deserialize<T>(responseBody, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                         }
                         else
                         {
                             Console.WriteLine("Error en la respuesta: " + request.StatusCode);
                         }
                     }
+                    string dataRequest = await request.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<T>(dataRequest);
                 }
             }
             catch (Exception ex)

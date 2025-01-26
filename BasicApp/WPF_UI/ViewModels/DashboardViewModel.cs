@@ -5,6 +5,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Windows.Navigation;
 using Wpf.Ui.Demo.Mvvm.Views;
 using WPF_UI.Constants;
@@ -88,7 +89,14 @@ public partial class DashboardViewModel : ViewModel
         }
     }
 
-
+    public void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+        if (e.Row.Item is CocheDTO objeto)
+        {
+            // Aquí llamas al método sobre el objeto editado
+            _httpJsonService.PatchAsync($"{ConstantesApi.COCHE_PATH}{"/"}{objeto.Id}", objeto);
+        }
+    }
 
     private void UpdatePagedCoches()
     {

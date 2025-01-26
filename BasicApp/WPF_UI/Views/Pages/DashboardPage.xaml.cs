@@ -3,7 +3,10 @@
 // Copyright (C) Leszek Pomianowski and WPF UI Contributors.
 // All Rights Reserved.
 
+using System.Windows.Controls;
 using Wpf.Ui.Abstractions.Controls;
+using WPF_UI.Constants;
+using WPF_UI.Services;
 
 namespace Wpf.Ui.Demo.Mvvm.Views.Pages;
 
@@ -20,5 +23,10 @@ public partial class DashboardPage : INavigableView<ViewModels.DashboardViewMode
         DataContext = this;
 
         InitializeComponent();
+    }
+
+    private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+        ViewModel.MyDataGrid_CellEditEnding(sender, e);
     }
 }
