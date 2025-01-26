@@ -98,13 +98,8 @@ public partial class MainWindowViewModel : ViewModel
 
             App.Services.GetService<Credenciales>().BorrarCredenciales();
             App.Services.GetService<IHttpJsonProvider<CocheDTO>>().RemoveToken();
+            App.Services.GetService<DashboardViewModel>().OnStart();
 
-            ObservableCollection<CocheDTO> listaCoches = App.Services.GetService<DashboardViewModel>().ListaCoches;
-            if (listaCoches != null)
-            {
-                listaCoches.Clear();
-            }
 
-        
     }
 }

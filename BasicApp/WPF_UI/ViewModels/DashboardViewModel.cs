@@ -20,32 +20,111 @@ public partial class DashboardViewModel : ViewModel
     [ObservableProperty]
     private int _counter = 0;
 
-    [ObservableProperty]
-    private ObservableCollection<CocheDTO> listaCoches;
+
+    private List<CocheDTO> listaCoches;
 
     private readonly IHttpJsonProvider<CocheDTO> _httpJsonService;
 
     public DashboardViewModel(IHttpJsonProvider<CocheDTO> httpJsonProvider)
     {
         _httpJsonService = httpJsonProvider;
+
+        OnStart();
     }
 
+    public void OnStart()
+    {
+        listaCoches = new List<CocheDTO>();
+        PagedCoches = new ObservableCollection<CocheDTO>();
+
+        ItemsPerPage = 5;
+        CurrentPage = 0;
+        CurrentPageView = 1;
+        TotalPages = 1;
+    }
+
+    [ObservableProperty]
+    private ObservableCollection<CocheDTO> pagedCoches;
+
+    [ObservableProperty]
+    private int currentPage;
+
+    [ObservableProperty]
+    private int currentPageView;
+
+    [ObservableProperty]
+    private int itemsPerPage;
+
+    [ObservableProperty]
+    public int totalPages; 
+
+    private void SumarPages(int num)
+    {
+        CurrentPage += num;
+        CurrentPageView += num;
+    }
 
     public async Task CargarCoches()
     {
         if (App.Services.GetService<Credenciales>().GetCredenciales().UserName != null)
         {
 
-            IEnumerable<CocheDTO> coches = await _httpJsonService.GetAsync(ConstantesApi.COCHE_PATH);
-            ListaCoches = new ObservableCollection<CocheDTO>();
-            foreach (var coche in coches)
+            try
             {
-                 ListaCoches.Add(coche);
+                OnStart();
+
+                IEnumerable<CocheDTO> coches = await _httpJsonService.GetAsync(ConstantesApi.COCHE_PATH);
+                listaCoches.AddRange(coches.OrderBy(d => d.Id));
+                
+                TotalPages = (int)Math.Ceiling((double)listaCoches.Count / ItemsPerPage);
+                UpdatePagedCoches();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"Error al cargar datos: {ex.Message}");
             }
 
         }
     }
 
+
+
+    private void UpdatePagedCoches()
+    {
+
+        PagedCoches.Clear();  
+        var pagedItems = listaCoches.Skip(CurrentPage * ItemsPerPage).Take(ItemsPerPage).ToList();
+        foreach (var item in pagedItems)
+        {
+            PagedCoches.Add(item);
+        }
+    }
+
+
+    [RelayCommand]
+    public void PreviousPage()
+    {
+        if (CurrentPage > 0)
+        {
+            SumarPages(-1);
+            UpdatePagedCoches();
+        }
+    }
+
+    [RelayCommand]
+    public void NextPage()
+    {
+        if (CurrentPage < TotalPages - 1)
+        {
+            SumarPages(1);
+            UpdatePagedCoches();
+        }
+    }
+
+    private bool CanGoToPreviousPage() => CurrentPage > 0;
+
+    private bool CanGoToNextPage() => CurrentPage < TotalPages - 1;
 
     [RelayCommand]
     public void Add(object? parameter)
@@ -58,8 +137,13 @@ public partial class DashboardViewModel : ViewModel
         view.DataContext = viewmodel;
 
         view.Show();
+        view.Closed += View_Closed;
     }
 
+    private void View_Closed(object sender, EventArgs e)
+    {
+        CargarCoches();
+    }
 
     public override void OnNavigatedTo()
     {

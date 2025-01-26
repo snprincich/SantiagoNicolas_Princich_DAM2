@@ -21,29 +21,38 @@
     <Grid >
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ui:FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE700;" HorizontalAlignment="Left" Foreground="White" />
+      
 
-        <ui:Button Name="Add" Content="Add" HorizontalAlignment="Right" Command="{Binding ViewModel.AddCommand}" Icon="" Foreground="White" />
+        <ui:Button Name="Add" Content="Add" HorizontalAlignment="Right" Command="{Binding ViewModel.AddCommand}"  FontSize="50" Height="100" Margin="10"/>
+        
         <ui:DataGrid
-            Grid.Row="1" 
-            x:Name="MyDataGrid"       
-            ItemsSource="{Binding ViewModel.ListaCoches}" 
-            AutoGenerateColumns="True" 
-            Margin="10" 
+            Grid.Row="1"
+            x:Name="MyDataGrid"
+            ItemsSource="{Binding ViewModel.PagedCoches}"
+            AutoGenerateColumns="True"
+            Margin="0,0,0,10"
             CanUserResizeColumns="True"
             CanUserResizeRows="False"
             VerticalAlignment="Top"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Stretch"
             MinRowHeight="25"
-            MaxHeight="400" 
-            
+            MaxHeight="400"
             ColumnWidth="Auto"
+            
             ScrollViewer.VerticalScrollBarVisibility="Auto"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Anterior" Command="{Binding ViewModel.PreviousPageCommand}" Background="Black" Foreground="White"  Margin="10,0" />
+            <TextBlock Text="{Binding ViewModel.CurrentPageView, StringFormat='Pagina {0}'}" Foreground="Brown"  VerticalAlignment="Center" Margin="10,0" />
+            <TextBlock Text="/" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding ViewModel.TotalPages, StringFormat=' {0}'}" Foreground="Brown" VerticalAlignment="Center" Margin="10,0" />
+            <Button Content="Siguiente" Command="{Binding ViewModel.NextPageCommand}" Margin="10,0" Background="Black"  Foreground="White"/>
+        </StackPanel>
 
     </Grid>
 </Page>
