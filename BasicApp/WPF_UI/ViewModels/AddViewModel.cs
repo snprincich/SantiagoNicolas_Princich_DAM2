@@ -15,11 +15,11 @@ namespace Wpf.Ui.Demo.Mvvm.ViewModels
     public partial class AddViewModel : ViewModel
     {
         [ObservableProperty]
-        private string? marca = "pruebita";
+        private string? marca;
         [ObservableProperty]
-        private string? modelo = "prueba";
+        private string? modelo;
         [ObservableProperty]
-        private int precio = 999;
+        private int precio;
 
 
 
