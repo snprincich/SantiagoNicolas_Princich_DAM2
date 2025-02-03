@@ -1,6 +1,6 @@
-﻿using HousesAPI.Models.Entity;
+﻿using DesignAPI.Models.Entity;
 
-namespace HousesAPI.Repository.IRepository
+namespace DesignAPI.Repository.IRepository
 {
     public interface IRepository<TEntity> where TEntity : class
     {

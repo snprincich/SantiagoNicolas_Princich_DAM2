@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace HousesAPI.Models.Entity
+namespace DesignAPI.Models.Entity
 {
     public class AppUser : IdentityUser
     {

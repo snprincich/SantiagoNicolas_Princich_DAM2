@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HousesAPI.Models.Entity
+namespace DesignAPI.Models.Entity
 {
     public class User
     {

@@ -1,4 +1,4 @@
-﻿namespace HousesAPI.Models.DTOs.UserDto
+﻿namespace DesignAPI.Models.DTOs.UserDto
 {
     public class UserDto
     {

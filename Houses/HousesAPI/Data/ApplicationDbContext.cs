@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using HousesAPI.Models.Entity;
+using DesignAPI.Models.Entity;
 
-namespace HousesAPI.Data
+namespace DesignAPI.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
@@ -18,6 +18,7 @@ namespace HousesAPI.Data
         //Add models here
         public DbSet<User> Users { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<HouseEntity> House { get; set; }
+        public DbSet<PujaEntity> Puja { get; set; }
+        public DbSet<CocheEntity> Coche { get; set; }
     }
 }

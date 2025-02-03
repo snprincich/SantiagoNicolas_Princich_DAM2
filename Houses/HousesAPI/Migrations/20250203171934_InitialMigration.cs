@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace HousesAPI.Migrations
+namespace DesignAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,23 +52,36 @@ namespace HousesAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "House",
+                name: "Coche",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AvailableUnits = table.Column<int>(type: "int", nullable: false),
-                    Wifi = table.Column<bool>(type: "bit", nullable: false),
-                    Laundry = table.Column<bool>(type: "bit", nullable: false)
+                    Periodo = table.Column<int>(type: "int", nullable: false),
+                    Modelo = table.Column<double>(type: "float", nullable: false),
+                    Notas = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Firma = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PujaInicial = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_House", x => x.Id);
+                    table.PrimaryKey("PK_Coche", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Puja",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PujaActual = table.Column<double>(type: "float", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id_coche = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Puja", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -253,7 +266,10 @@ namespace HousesAPI.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "House");
+                name: "Coche");
+
+            migrationBuilder.DropTable(
+                name: "Puja");
 
             migrationBuilder.DropTable(
                 name: "Users");

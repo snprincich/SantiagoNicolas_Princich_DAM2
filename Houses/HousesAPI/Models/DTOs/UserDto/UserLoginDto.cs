@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HousesAPI.Models.DTOs.UserDto
+namespace DesignAPI.Models.DTOs.UserDto
 {
     public class UserLoginDto
     {

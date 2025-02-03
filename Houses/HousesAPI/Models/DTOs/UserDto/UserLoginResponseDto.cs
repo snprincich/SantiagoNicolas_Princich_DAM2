@@ -1,6 +1,6 @@
-﻿using HousesAPI.Models.Entity;
+﻿using DesignAPI.Models.Entity;
 
-namespace HousesAPI.Models.DTOs.UserDto
+namespace DesignAPI.Models.DTOs.UserDto
 {
     public class UserLoginResponseDto
     {

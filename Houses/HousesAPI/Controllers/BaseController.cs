@@ -1,4 +1,4 @@
-﻿namespace HousesAPI.Controllers
+﻿namespace DesignAPI.Controllers
 {
     using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using global::AutoMapper;
-    using global::HousesAPI.Repository.IRepository;
+    using global::DesignAPI.Repository.IRepository;
     using System.Runtime.ConstrainedExecution;
 
     [ApiController]

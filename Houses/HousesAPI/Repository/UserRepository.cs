@@ -1,5 +1,5 @@
-﻿using HousesAPI.Data;
-using HousesAPI.Models.DTOs.UserDto;
+﻿using DesignAPI.Data;
+using DesignAPI.Models.DTOs.UserDto;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -7,10 +7,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Security.Cryptography;
-using HousesAPI.Models.Entity;
-using HousesAPI.Repository.IRepository;
+using DesignAPI.Models.Entity;
+using DesignAPI.Repository.IRepository;
 
-namespace HousesAPI.Repository
+namespace DesignAPI.Repository
 {
     public class UserRepository : IUserRepository
     {

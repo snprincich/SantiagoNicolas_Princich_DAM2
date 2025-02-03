@@ -1,7 +1,7 @@
-﻿using HousesAPI.Models.DTOs.UserDto;
-using HousesAPI.Models.Entity;
+﻿using DesignAPI.Models.DTOs.UserDto;
+using DesignAPI.Models.Entity;
 
-namespace HousesAPI.Repository.IRepository
+namespace DesignAPI.Repository.IRepository
 {
     public interface IUserRepository
     {

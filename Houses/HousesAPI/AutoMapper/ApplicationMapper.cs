@@ -1,17 +1,21 @@
-﻿using HousesAPI.Models.DTOs.UserDto;
+﻿using DesignAPI.Models.DTOs.UserDto;
 using AutoMapper;
-using HousesAPI.Models.DTOs;
-using HousesAPI.Models.Entity;
-using HousesAPI.Models.DTOs.HouseDTO;
+using DesignAPI.Models.DTOs;
+using DesignAPI.Models.Entity;
+using DesignAPI.Models.DTOs.PujaDTO;
 
-namespace HousesAPI.AutoMapper
+namespace DesignAPI.AutoMapper
 {
     public class ApplicationMapper : Profile
     {
         public ApplicationMapper()
         {
-            CreateMap<HouseEntity, HouseDTO>().ReverseMap();
-            CreateMap<HouseEntity, CreateHouseDTO>().ReverseMap();
+            CreateMap<PujaEntity, PujaDTO>().ReverseMap();
+            CreateMap<PujaEntity, CreatePujaDTO>().ReverseMap();
+
+            CreateMap<CocheEntity, CocheDTO>().ReverseMap();
+            CreateMap<CocheEntity, CreateCocheDTO>().ReverseMap();
+
             CreateMap<AppUser, UserDto>().ReverseMap();
         }
     }

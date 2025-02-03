@@ -1,12 +1,12 @@
-﻿using HousesAPI.Models.DTOs;
-using HousesAPI.Models.DTOs.UserDto;
+﻿using DesignAPI.Models.DTOs;
+using DesignAPI.Models.DTOs.UserDto;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using HousesAPI.Repository.IRepository;
+using DesignAPI.Repository.IRepository;
 
-namespace HousesAPI.Controllers
+namespace DesignAPI.Controllers
 {
     [Route("api/users")]
     [ApiController]
