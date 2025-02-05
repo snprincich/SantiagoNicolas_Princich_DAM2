@@ -1,3 +1,13 @@
+.container {
+  text-align: center;
+  color: white;
+  display: inline-block;
+}
+
+.bottom-left {
+  bottom: 8px;
+  left: 16px;
+}
 .results {
   display: grid;
   column-gap: 14px;
