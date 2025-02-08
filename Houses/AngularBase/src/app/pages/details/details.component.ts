@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HousingLocation } from 'src/app/models/housinglocation';
-import { HousingService } from 'src/app/services/housing.service';
+
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { Coche } from 'src/app/models/coche';
 import { CocheService } from 'src/app/services/coche.service';
@@ -14,42 +13,55 @@ import { CocheService } from 'src/app/services/coche.service';
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-
+/*
   applyForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-  });
-  
-  /*housingLocation: HousingLocation | undefined;
-  housingService: HousingService;*/
+    nombre: new FormControl<string>(''),
+    puja: new FormControl<number>(0),
+  });*/
+
+  applyForm: FormGroup;
 
   coche: Coche | undefined;
   cocheService: CocheService;
 
-  /*
-  constructor(housingService: HousingService) {
-      const housingLocationId = parseInt(this.route.snapshot.params['id'], 1);
-      housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
-        this.housingLocation = housingLocation;
-      });
-      this.housingService=housingService;
-  }*/
+  pujaActual: Number|undefined;
 
   constructor(cocheService: CocheService) {
-      const cocheId = parseInt(this.route.snapshot.params['id'], 10);
-      cocheService.getCocheById(cocheId).then((coche) => {
-        this.coche = coche;
-      });
-      this.cocheService=cocheService;
+    const cocheId = parseInt(this.route.snapshot.params['id'], 10);
+    cocheService.getCocheById(cocheId).then((coche) => {
+      this.coche = coche;
+      if (coche){
+        this.getPuja(coche.id)
+      }
+      
+    });
+    this.cocheService=cocheService;
+
+    this.applyForm = new FormGroup({
+      nombre: new FormControl<string>(''),
+      puja: new FormControl<Number|undefined>(this.pujaActual ?? 0),
+    });
   }
 
-  /*
-  submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.value.firstName ?? '',
-      this.applyForm.value.lastName ?? '',
-      this.applyForm.value.email ?? '',
-    );
-  }*/
+  async getPuja(id: number){
+      this.pujaActual = await this.cocheService.getPujaActual(id) ?? 0;
+  }
+
+  async submitApplication() {
+
+    if(this.coche && await this.cocheService.submitApplication(
+      this.coche?.id,
+      this.applyForm.value.nombre ?? '',
+      this.applyForm.value.puja ?? 0,
+
+    )){
+      this.pujaActual = this.applyForm.value.puja;
+      console.log('Puja realizada')
+    }
+    else{
+      console.log('Error en la puja')
+    }
+  }
+
+  
 }
