@@ -26,7 +26,7 @@
             _logger = logger;
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         [AllowAnonymous]
         //[Authorize(Roles = "admin")]
         [HttpGet("{id:int}", Name = "[controller]_GetEntity")]

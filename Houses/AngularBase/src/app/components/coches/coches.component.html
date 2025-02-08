@@ -1,0 +1,6 @@
+<section class="listing">
+  <img routerLink="/details/{{coche.id}}" class="listing-photo" [src]="coche.imagen"
+    alt="Exterior photo of {{ coche.modelo }}" crossorigin />
+  <h2 class="listing-heading">{{ coche.modelo }}</h2>
+  <p class="listing-location">{{ coche.periodo }}, {{ coche.firma }}</p>
+</section>
