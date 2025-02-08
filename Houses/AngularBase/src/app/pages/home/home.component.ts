@@ -1,5 +1,5 @@
 import { Component,inject} from '@angular/core';
-import {HousingLocation} from '../../models/housinglocation'
+
 import { CommonModule } from '@angular/common';
 import { Coche } from 'src/app/models/coche';
 import { CocheService } from 'src/app/services/coche.service';
