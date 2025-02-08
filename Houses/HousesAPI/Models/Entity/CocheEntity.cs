@@ -10,7 +10,7 @@ namespace DesignAPI.Models.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int Periodo { get; set; }
-        public double Modelo { get; set; }
+        public string Modelo { get; set; }
         public string Notas { get; set; }
         public string Firma { get; set; }
         public string Imagen { get; set; }

@@ -8,8 +8,8 @@ namespace DesignAPI.Models.DTOs.PujaDTO
         public int Periodo { get; set; }
 
         [Required(ErrorMessage = "Modelo is required")]
-        [MaxLength(50, ErrorMessage = "Max length is 50 characters")]
-        public double Modelo { get; set; }
+        [MaxLength(50, ErrorMessage = "Max length is 100 characters")]
+        public string Modelo { get; set; }
 
         [Required(ErrorMessage = "Notas is required")]
         public string Notas {  get; set; }

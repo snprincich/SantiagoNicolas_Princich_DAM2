@@ -58,7 +58,7 @@ namespace DesignAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Periodo = table.Column<int>(type: "int", nullable: false),
-                    Modelo = table.Column<double>(type: "float", nullable: false),
+                    Modelo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Notas = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Firma = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),

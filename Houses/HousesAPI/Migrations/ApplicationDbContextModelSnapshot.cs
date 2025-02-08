@@ -108,8 +108,9 @@ namespace DesignAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Modelo")
-                        .HasColumnType("float");
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notas")
                         .IsRequired()

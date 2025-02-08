@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesignAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250203171934_InitialMigration")]
+    [Migration("20250208123109_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -111,8 +111,9 @@ namespace DesignAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Modelo")
-                        .HasColumnType("float");
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notas")
                         .IsRequired()
